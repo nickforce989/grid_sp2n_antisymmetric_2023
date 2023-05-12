@@ -7,7 +7,7 @@
 # "g5Dw_Operator_whatever.txt" in "g5Dw_Operator_1.txt" and     #
 # "eigenvalues_whatever.txt" to "eigenvalues_1.txt"             #
 # NNB: RUN IT JUST ONCE, IF RE-RUN, RECOPY AND PASTE THE FILES  #
-# IN THE DIRECTORY.						#
+# IN THE DIRECTORY.					          #
 #################################################################
 
 counter=1
@@ -19,7 +19,7 @@ for file in eigenvalues_*.txt; do
 done
 
 
-# Loop through files named eigenvalues_n.txt
+# Loop through files named g5Dw_Operator_n.txt
 for (( k=2; ; k++ )); do
   if [[ -f "g5Dw_Operator_$k.txt" ]]; then
     # Modify the first line of the Python code to read g5Dw_Operator_1.txt
@@ -28,7 +28,7 @@ for (( k=2; ; k++ )); do
     # Modify the second line of the Python code to write to eigenvalues_1.txt
     sed -i "s/eigenvalues_$((k-1)).txt/eigenvalues_$k.txt/" find_eigenvalues.py
 
-    # Run the modified Python code
+    # Run the modified Python code which finds the eigenvalues for a tensor
     python find_eigenvalues.py
   else
     # No more files found, exit the loop

@@ -36,7 +36,7 @@ for ASmass in $(seq -f "%.1f" -1.4 0.1 0.0); do
     sed -i "s/--fermionmass [^\\ ]*/--fermionmass $ASmass/" test
 
     # Compile the code
-    make Test_hmc_Sp_Wilson_$2_2ASFermionGauge
+#    make Test_hmc_Sp_Wilson_$2_2ASFermionGauge
 
     # Launch the job
     sbatch test
