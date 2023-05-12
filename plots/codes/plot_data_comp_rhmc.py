@@ -2,20 +2,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Activating text rendering by LaTex
-plt.rcParams.update({
-    "text.usetex": True,
-    "font.family": "serif",
-    "font.monospace": 'Computer Modern Roman',
-    "lines.linewidth": 0.5,  # set thicker line width
-    "lines.markersize" : '3',
-    "lines.markeredgewidth" : '0.5',
-    "errorbar.capsize" : '1.5',
-    "axes.linewidth" : '0.5',
-    "legend.fontsize" : 'small',
-    "legend.handletextpad" : '0.3',
-    "legend.columnspacing" : '0.5'
-})
+# Activating text rendering by LaTeX
+plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
 data = np.loadtxt('compatibilita_rhmc.txt')

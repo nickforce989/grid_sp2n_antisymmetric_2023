@@ -1,34 +1,24 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Activating text rendering by LaTex
-plt.rcParams.update({
-    "text.usetex": True,
-    "font.family": "serif",
-    "font.monospace": 'Computer Modern Roman',
-    "lines.linewidth": 1.5,  # set thicker line width to 1.5
-    "lines.markersize" : 3,
-    "lines.markeredgewidth" : 0.5,
-    "errorbar.capsize" : 1.5,
-    "axes.linewidth" : 0.5,
-    "legend.fontsize" : 10,
-    "legend.handletextpad" : 0.3,
-    "legend.columnspacing" : 0.5
-})
+# Activating text rendering by LaTeX
+plt.style.use("paperdraft.mplstyle")
 
 # Define a list of colors for each file
-colors = [(0.8, 0.2, 0.8),(0.0, 0.0, 0.0) ,(0.0, 0.6, 1.0), (1.0, 0.5, 0.0) ,(0.0, 1.0, 0.0) ,(1.0, 0.75, 0.79), (1.0, 0.843, 0.0), (0.0, 0.1, 0.5)]
+colors = [(0.3, 0.0, 0.4), (0.6, 0.1, 0.1), (0.1, 0.2, 0.5), (0.7, 0.4, 0.1), 
+          (0.4, 0.4, 0.4), (0.8, 0.8, 0.8)]
+
 
 # Create a figure and axis object
 fig, ax = plt.subplots(figsize=(6, 3.5))
 
 # Define a list of beta values
-betas = [5.8, 6.0, 6.1, 6.2, 6.3, 6.4]
+betas = [6.2, 6.4, 6.5, 6.6, 6.7, 6.8]
 
 # Loop through each file
 for i in range(6):
     # Read data from input file
-    data = np.loadtxt(f'bulktrans_nf6_sp4_2AS_{i+1}.dat')  # assuming files are named as bulktrans_sp4_2AS_b56_1.dat, bulktrans_sp4_2AS_b56_2.dat, etc.
+    data = np.loadtxt(f'bulktrans_nf2_sp4_2AS_{i+1}.dat')  # assuming files are named as bulktrans_sp4_2AS_b56_1.dat, bulktrans_sp4_2AS_b56_2.dat, etc.
 
     # Extract columns
     x = data[:, 0]
@@ -54,7 +44,7 @@ legend = ax.legend(ncol=2, title='$\\beta$')
 legend.get_title().set_fontsize('10')
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('bulktrans_nf6_2AS_all.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('bulktrans_nf2_2AS_all.pdf', dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()

@@ -1,20 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Activating text rendering by LaTex
-plt.rcParams.update({
-    "text.usetex": True,
-    "font.family": "serif",
-    "font.monospace": 'Computer Modern Roman',
-    "lines.linewidth": 1.5,  # set thicker line width to 1.5
-    "lines.markersize" : 3,
-    "lines.markeredgewidth" : 0.5,
-    "errorbar.capsize" : 1.5,
-    "axes.linewidth" : 0.5,
-    "legend.fontsize" : 10,
-    "legend.handletextpad" : 0.3,
-    "legend.columnspacing" : 0.5
-})
+# Activating text rendering by LaTeX
+plt.style.use("paperdraft.mplstyle")
 
 # Define a list of colors for each file
 colors = [(0.5, 0.7, 0.9),(0.0, 0.4, 0.0) ,(0.2, 0.3, 0.4), (0.0, 0.9, 0.0) ,(0.7, 0.2, 0.1) ,(0.1, 0.35, 0.39), (1.0, 0.843, 0.3), (0.8, 0.9, 0.5)]

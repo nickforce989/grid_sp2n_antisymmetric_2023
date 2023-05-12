@@ -4,22 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from math import gamma
 
-# Activating text rendering by LaTex
-plt.rcParams.update({
-    "text.usetex": True,
-    "font.family": "serif",
-    "font.monospace": 'Computer Modern Roman',
-    "lines.linewidth": 0.5,  # set thicker line width
-    "lines.markersize" : '3',
-    "lines.markeredgewidth" : '0.5',
-    "errorbar.capsize" : '1.5',
-    "axes.linewidth" : '0.5',
-    "legend.fontsize" : 'small',
-    "legend.handletextpad" : '0.3',
-    "legend.columnspacing" : '0.5',
-    "xtick.labelsize" : 10,   # set font size of x tick labels to 8
-    "ytick.labelsize" : 10    # set font size of y tick labels to 8
-})
+# Activating text rendering by LaTeX
+plt.style.use("paperdraft.mplstyle")
 
 # Create a new figure with 1 row and 2 columns
 fig, axs = plt.subplots(1, 2, figsize=(9.5, 3.5))
