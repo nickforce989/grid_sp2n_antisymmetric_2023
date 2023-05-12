@@ -11,7 +11,7 @@ colors = ['purple', 'blue', 'green', 'grey', 'indigo', 'magenta', 'yellow', 'bla
 fig, ax = plt.subplots(figsize=(6.5, 4.0))
 
 # Define a list of beta values
-betas = [5.6, 5.8, 6.0, 6.2, 6.3, 6.4, 6.5, 6.6, 6.8, 7.0]
+betas = sorted([5.6, 5.8, 6.0, 6.2, 6.3, 6.4, 6.5, 6.6, 6.8, 7.0])
 
 # Loop through each file
 for i in range(10):
