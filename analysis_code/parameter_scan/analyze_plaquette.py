@@ -1,3 +1,10 @@
+#################################################################################
+# Analysis for a parameter scan for a Sp(4) with Nf 2AS fermions.               #
+# This will find all the plaquette values for that theory with jackknife errors #
+# You expect to have a directory of files like 'hmc_7516154-b62_am-14.out'      #
+# NB: You can fix the thermalization of values with therm_num.                  #
+#################################################################################
+
 import re
 import numpy as np
 import os
