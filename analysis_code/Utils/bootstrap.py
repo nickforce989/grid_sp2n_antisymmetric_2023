@@ -9,6 +9,7 @@ def compute_bootstrap(data):
     averages = []
     num_samples = 1000
     for i in range(num_samples):
+        random.seed(42)  # Fix the seed to 42
         sample = [random.choice(data) for _ in range(n)]
         average = sum(sample) / n
         averages.append(average)
@@ -17,7 +18,7 @@ def compute_bootstrap(data):
     return (variance ** 0.5)
 
 output_file = open("output_bootstrap.txt", "w")
-for i in range(1, 451):
+for i in range(1, 15):
     input_file = f"output_{i}.txt"
     if os.path.isfile(input_file):
         data = []

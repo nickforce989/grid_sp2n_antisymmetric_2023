@@ -1,23 +1,22 @@
 import re
 import os
+import random
 
 
-def compute_jackknife(data):
+def compute_bootstrap(data):
     """
-    Compute the jackknife error given a list of data.
+    Compute the bootstrap error given a list of data.
     """
     n = len(data)
-    block_size = n // 10
-    num_blocks = n // block_size
     averages = []
-    for i in range(num_blocks):
-        block_start = i * block_size
-        block_end = block_start + block_size
-        jackknife_data = data[:block_start] + data[block_end:]
-        average = sum(jackknife_data) / (n - block_size)
+    num_samples = 1000
+    for i in range(num_samples):
+        random.seed(42)  # Fix the seed to 42
+        sample = [random.choice(data) for _ in range(n)]
+        average = sum(sample) / n
         averages.append(average)
     mean = sum(data) / n
-    variance = sum((avg - mean) ** 2 for avg in averages) * (num_blocks - 1) / num_blocks
+    variance = sum((avg - mean) ** 2 for avg in averages) / (num_samples - 1)
     return (variance ** 0.5)
 
 
@@ -63,9 +62,9 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
                 if match and int(match.group(1)) == number:
                     output_file.write(line)
 
-    # Compute jackknife errors and write to output file for pattern 1 (Clover plaq)
+    # Compute bootstrap errors and write to output file for pattern 1 (Clover plaq)
     with open(output_file_clover, "w") as output_file:
-        for i in range(1, evolution_time+1):
+        for i in range(1, evolution_time + 1):
             input_file = f"output_clover_{i}.txt"
             if os.path.isfile(input_file):
                 data = []
@@ -79,38 +78,38 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
                                 data.append(float(numbers[-1]))
                 if data:
                     average = sum(data) / len(data)
-                    error = compute_jackknife(data)
+                    error = compute_bootstrap(data)
                     output_file.write(f"{average}\t{error}\n")
                 os.remove(input_file)
 
-        # Process output files for pattern 2 (plaq)
-        for number in numbers2:
-            output_file_name = f"output_{number}.txt"
-            with open(output_file_name, "w") as output_file:
-                for line in input_lines:
-                    match = re.search(pattern2, line)
-                    if match and int(match.group(1)) == number:
-                        output_file.write(line)
+    # Process output files for pattern 2 (plaq)
+    for number in numbers2:
+        output_file_name = f"output_{number}.txt"
+        with open(output_file_name, "w") as output_file:
+            for line in input_lines:
+                match = re.search(pattern2, line)
+                if match and int(match.group(1)) == number:
+                    output_file.write(line)
 
-        # Compute jackknife errors and write to output file for pattern 2 (plaq)
-        with open(output_file_plaq, "w") as output_file:
-            for i in range(1, evolution_time+1):
-                input_file = f"output_{i}.txt"
-                if os.path.isfile(input_file):
-                    data = []
-                    with open(input_file) as f:
-                        line_count = 0
-                        for line in f:
-                            line_count += 1
-                            if line_count > 10:
-                                numbers = line.strip().split()
-                                if numbers:
-                                    data.append(float(numbers[-1]))
-                    if data:
-                        average = sum(data) / len(data)
-                        error = compute_jackknife(data)
-                        output_file.write(f"{average}\t{error}\n")
-                    os.remove(input_file)
+    # Compute bootstrap errors and write to output file for pattern 2 (plaq)
+    with open(output_file_plaq, "w") as output_file:
+        for i in range(1, evolution_time + 1):
+            input_file = f"output_{i}.txt"
+            if os.path.isfile(input_file):
+                data = []
+                with open(input_file) as f:
+                    line_count = 0
+                    for line in f:
+                        line_count += 1
+                        if line_count > 10:
+                            numbers = line.strip().split()
+                            if numbers:
+                                data.append(float(numbers[-1]))
+                if data:
+                    average = sum(data) / len(data)
+                    error = compute_bootstrap(data)
+                    output_file.write(f"{average}\t{error}\n")
+                os.remove(input_file)
 
 # Define the input file search patterns and output file names
 input_file_pattern1 = r".*b69.*\.out"
