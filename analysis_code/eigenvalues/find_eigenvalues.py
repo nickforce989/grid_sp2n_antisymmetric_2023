@@ -28,7 +28,7 @@ def compute_eigenvalues(a, n):
     return eigenvalues
 
 # Read in matrix from input file
-a, n = read_matrix("g5Dw_Operator.txt")
+a, n = read_matrix("../../data/g5Dw_Operator.txt")
 
 # Compute eigenvalues
 eigenvalues = compute_eigenvalues(a, n)

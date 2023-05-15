@@ -7,6 +7,14 @@
 
 # create an array to store the names of the files starting with "eigenvalues_"
 files=($(ls eigenvalues_*))
+directory='../../data/'
+
+modified_files=()
+
+for file in "${files[@]}"; do
+  modified_files+=("${directory}${file}")
+done
+
 
 # print the list of file names
 #echo "List of files:"

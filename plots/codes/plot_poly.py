@@ -13,7 +13,7 @@ fig, axs = plt.subplots(2, 2, figsize=(7.5, 4.5))
 titles = ["$\\tilde{{V}} = ({2}a)^4$","$\\tilde{{V}} = ({8}a)^4$","$\\tilde{{V}} = ({16}a)^4$","$\\tilde{{V}} = ({20}a)^4$"]
 
 # Read the four images and plot them in the corresponding axes
-for i, file in enumerate(['output_vol2_b9_4.txt', 'output_vol4_b9_3.txt', 'output_vol12_b9_4.txt', 'output_vol20_b9_4.txt']):
+for i, file in enumerate(['../../data/output_vol2_b9_4.txt', '../../data/output_vol4_b9_3.txt', '../../data/output_vol12_b9_4.txt', '../../data/output_vol20_b9_4.txt']):
     # Read the data from the file
     with open(file, 'r') as f:
         data = [float(line.strip()) for line in f]
@@ -37,7 +37,7 @@ fig.text(0.06, 0.5, 'Frequency', va='center', rotation='vertical', fontsize=8)
 plt.subplots_adjust(hspace=0.4, wspace=0.3)
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('Polyloops_merged.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('../figures/Polyloops_merged.pdf', dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()

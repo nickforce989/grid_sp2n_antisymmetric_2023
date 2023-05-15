@@ -13,7 +13,7 @@ fig, ax = plt.subplots(figsize=(6.5, 4.0))
 # Loop through each file
 for i in range(1):
     # Read data from input file
-    data = np.loadtxt(f'bulktrans_nf0_sp4_{i+1}.dat')  # assuming files are named as bulktrans_sp4_2AS_b56_1.dat, bulktrans_sp4_2AS_b56_2.dat, etc.
+    data = np.loadtxt(f'../../data/bulktrans_nf0_sp4_{i+1}.dat')  # assuming files are named as bulktrans_sp4_2AS_b56_1.dat, bulktrans_sp4_2AS_b56_2.dat, etc.
 
     # Extract columns
     x = data[:, 0]
@@ -35,7 +35,7 @@ ax.set_xlabel('$\\beta$',fontsize=11)
 ax.set_ylabel('$\langle P \\rangle $',fontsize=11)
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('bulktrans_puregauge.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('../figures/bulktrans_puregauge.pdf', dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()

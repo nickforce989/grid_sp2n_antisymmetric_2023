@@ -12,7 +12,7 @@ def process_files(input_files, output_file, output_file_with_index):
     numbers_in_order = [] # Keep track of the order in which numbers appear in the input files
 
     for file in input_files:
-        with open(os.path.join(directory, file), "r") as f_in:
+        with open(file, "r") as f_in:
             for line in f_in:
                 if "Top. charge           : 200" in line:
                     number = float(line.split()[-1])
@@ -25,11 +25,15 @@ def process_files(input_files, output_file, output_file_with_index):
             f_out.write(f"{number}\n")
             f_out_index.write(f"{i+1}\t{number}\n")
 
-input_files = [f for f in os.listdir(directory) if f.endswith(".out") and "b69" in f] # get list of files in directory with ".out" extension and "b69" in filename
+directory2 = '../../raw_data/'
+input_files = [f for f in os.listdir(directory2) if f.endswith(".out") and "b69" in f]
 input_files.sort(key=lambda f: int(f.split("_")[-1].split("-")[-1].split(".")[0])) # sort by last number before ".out"
-process_files(input_files, "top_charges_b69-am08.txt", "top_charges_b69-am08_with_index.txt")
+directory = '../../raw_data/'
+modified_names = [os.path.join(directory, name) for name in input_files]
+process_files(modified_names, "../../data2/top_charges_b69-am08.txt", "../../data2/top_charges_b69-am08_with_index.txt")
 
-input_files = [f for f in os.listdir(directory) if f.endswith(".out") and "b68" in f] # get list of files in directory with ".out" extension and "b68" in filename
+input_files = [f for f in os.listdir(directory2) if f.endswith(".out") and "b68" in f]
 input_files.sort(key=lambda f: int(f.split("_")[-1].split("-")[-1].split(".")[0])) # sort by last number before ".out"
-process_files(input_files, "top_charges_b68-am08.txt", "top_charges_b68-am08_with_index.txt")
+modified_names = [os.path.join(directory2, name) for name in input_files]
+process_files(modified_names, "../../data2/top_charges_b68-am08.txt", "../../data2/top_charges_b68-am08_with_index.txt")
 

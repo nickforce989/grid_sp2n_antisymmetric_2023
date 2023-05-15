@@ -26,7 +26,7 @@ for n, beta in enumerate(sorted_beta_values, start=1):
     # Initialize a dictionary to store the results for this beta value
     results = {}
     # Get list of all files with names matching the pattern 'hmc_b{beta}_*' in the same directory
-    pattern = f"hmc_*-b{int(beta*10)}_*.out"
+    pattern = f"../../raw_data/hmc_*-b{int(beta*10)}_*.out"
     files = glob.glob(pattern)
     files = [f for f in files if os.path.isfile(f)]
 
@@ -34,10 +34,10 @@ for n, beta in enumerate(sorted_beta_values, start=1):
     # Iterate over each file
     for filename in files:
         # Use grep command to select relevant lines and write to temporary file
-        os.system(f"grep 'Plaquette' {filename} | awk '{{print $NF}}' > plaquette_lines.txt")
+        os.system(f"grep 'Plaquette' {filename} | awk '{{print $NF}}' > ../../data/plaquette_lines.txt")
 
         # Read in the temporary file
-        with open("plaquette_lines.txt", "r") as f:
+        with open("../../data/plaquette_lines.txt", "r") as f:
             lines = f.readlines()
 
         # Extract plaquette values and their line numbers
@@ -79,10 +79,10 @@ for n, beta in enumerate(sorted_beta_values, start=1):
         results[float_val] = (bin_avg, bin_err)
 
         # Delete the temporary file
-        os.remove("plaquette_lines.txt")
+        os.remove("../../data/plaquette_lines.txt")
 
     # Write the results to the output file in ascending order based on the first column
-    with open("bulktrans_nf4_sp4_2AS_%d.dat" % n, "w") as f:
+    with open("../../data/bulktrans_nf4_sp4_2AS_%d.dat" % n, "w") as f:
         for key in sorted(results.keys(), reverse=True):
             bin_avg, bin_err = results[key]
             f.write(f"{key} {bin_avg} {bin_err}\n")

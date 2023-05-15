@@ -65,7 +65,7 @@ fig.set_size_inches(6, 4)
 
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('forces.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('../figures/forces.pdf', dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()

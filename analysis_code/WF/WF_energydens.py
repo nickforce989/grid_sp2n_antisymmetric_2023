@@ -2,7 +2,6 @@ import re
 import os
 import random
 
-
 def compute_bootstrap(data):
     """
     Compute the bootstrap error given a list of data.
@@ -22,8 +21,7 @@ def compute_bootstrap(data):
 
 def process_input_files(input_file_pattern, output_file_clover, output_file_plaq):
     # Find the input file that matches the pattern
-    input_file_name = next((file_name for file_name in os.listdir(".") if re.match(input_file_pattern, file_name)),
-                           None)
+    input_file_name = input_file_pattern
 
     if input_file_name is None:
         print("Error: no input file found that matches the pattern.")
@@ -55,7 +53,7 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
 
     # Process output files for pattern 1 (Clover plaq)
     for number in numbers1:
-        output_file_name = f"output_clover_{number}.txt"
+        output_file_name = f"../../data/output_clover_{number}.txt"
         with open(output_file_name, "w") as output_file:
             for line in input_lines:
                 match = re.search(pattern1, line)
@@ -65,7 +63,7 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
     # Compute bootstrap errors and write to output file for pattern 1 (Clover plaq)
     with open(output_file_clover, "w") as output_file:
         for i in range(1, evolution_time + 1):
-            input_file = f"output_clover_{i}.txt"
+            input_file = f"../../data/output_clover_{i}.txt"
             if os.path.isfile(input_file):
                 data = []
                 with open(input_file) as f:
@@ -84,7 +82,7 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
 
     # Process output files for pattern 2 (plaq)
     for number in numbers2:
-        output_file_name = f"output_{number}.txt"
+        output_file_name = f"../../data/output_{number}.txt"
         with open(output_file_name, "w") as output_file:
             for line in input_lines:
                 match = re.search(pattern2, line)
@@ -94,7 +92,7 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
     # Compute bootstrap errors and write to output file for pattern 2 (plaq)
     with open(output_file_plaq, "w") as output_file:
         for i in range(1, evolution_time + 1):
-            input_file = f"output_{i}.txt"
+            input_file = f"../../data/output_{i}.txt"
             if os.path.isfile(input_file):
                 data = []
                 with open(input_file) as f:
@@ -112,19 +110,20 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
                 os.remove(input_file)
 
 # Define the input file search patterns and output file names
-input_file_pattern1 = r".*b69.*\.out"
-output_file_name1 = "WF_b69_am-08_l8_clover.txt"
-output_file_name2 = "WF_b69_am-08_l8.txt"
+directory = "../../raw_data/"
+input_files = [f for f in os.listdir(directory) if f.endswith(".out") and "b69" in f] 
+output_file_name1 = "../../data/WF_b69_am-08_l8_clover.txt"
+output_file_name2 = "../../data/WF_b69_am-08_l8.txt"
 
-input_file_pattern2 = r".*b68.*\.out"
-output_file_name3 = "WF_b68_am-08_l8_clover.txt"
-output_file_name4 = "WF_b68_am-08_l8.txt"
+input_files2 = [f for f in os.listdir(directory) if f.endswith(".out") and "b68" in f] 
+output_file_name3 = "../../data/WF_b68_am-08_l8_clover.txt"
+output_file_name4 = "../../data/WF_b68_am-08_l8.txt"
 
 # Max Wilson Flow time
-evolution_time = 15
+evolution_time = 450
 
 # Process input files for b = 6.9
-process_input_files(input_file_pattern1, output_file_name1, output_file_name2)
+process_input_files("../../raw_data/"+input_files[0], output_file_name1, output_file_name2)
 
 # Process input files for b = 6.8
-process_input_files(input_file_pattern2, output_file_name3, output_file_name4)
+process_input_files("../../raw_data/"+input_files2[0], output_file_name3, output_file_name4)

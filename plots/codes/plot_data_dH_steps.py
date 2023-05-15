@@ -5,7 +5,7 @@ import numpy as np
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('dH_steps.txt')
+data = np.loadtxt('../../data/dH_steps.txt')
 
 # Extract columns
 x = data[:, 0]
@@ -38,7 +38,7 @@ ax.set_xlabel('$\Delta \\tau$',fontsize=9)
 ax.set_ylabel('$\langle \Delta H \\rangle $',fontsize=9)
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('dH_steps.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('../figures/dH_steps.pdf', dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()

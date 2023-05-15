@@ -16,7 +16,7 @@ betas = sorted([5.6, 5.8, 6.0, 6.2, 6.3, 6.4, 6.5, 6.6, 6.8, 7.0])
 # Loop through each file
 for i in range(10):
     # Read data from input file
-    data = np.loadtxt(f'bulktrans_sp4_2AS_{i+1}.dat')  # assuming files are named as bulktrans_sp4_2AS_b56_1.dat, bulktrans_sp4_2AS_b56_2.dat, etc.
+    data = np.loadtxt(f'../../data/bulktrans_sp4_2AS_{i+1}.dat')  # assuming files are named as bulktrans_sp4_2AS_b56_1.dat, bulktrans_sp4_2AS_b56_2.dat, etc.
 
     # Extract columns
     x = data[:, 0]
@@ -42,7 +42,7 @@ legend = ax.legend(ncol=2, title='$\\beta$')
 legend.get_title().set_fontsize('10')
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('bulktrans_nf4_2AS_all.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('../figures/bulktrans_nf4_2AS_all.pdf', dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()

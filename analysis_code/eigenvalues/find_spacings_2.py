@@ -16,8 +16,8 @@ def create_spacings_file(input_file):
                 pass
 
 def merge_spacings_files(directory):
-    input_file = os.path.join(directory, 'spacings_density.txt')
-    output_file = os.path.join(directory, 'spacings_density_2.txt')
+    input_file = os.path.join(directory, '/../../data/spacings_density.txt')
+    output_file = os.path.join(directory, '/../../data/spacings_density_2.txt')
     with open(input_file, 'r') as f_in:
         spacings = [float(line.strip()) for line in f_in]
     avg_spacing = sum(spacings) / len(spacings)

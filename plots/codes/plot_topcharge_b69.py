@@ -6,7 +6,7 @@ from scipy.stats import norm
 plt.style.use("paperdraft.mplstyle")
 
 # Load data from first file
-data1 = np.loadtxt('top_charges_b69-am08_with_index.txt')
+data1 = np.loadtxt('../../data/top_charges_b69-am08_with_index.txt')
 x = data1[:, 0]
 y = data1[:, 1]
 
@@ -61,7 +61,7 @@ fig.subplots_adjust(left=0.10, right=0.6, bottom=0.1, top=0.9)
 
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('topological_charge_b69.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('../figures/topological_charge_b69.pdf', dpi=300, bbox_inches='tight')
 
 plt.show()
 

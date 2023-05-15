@@ -5,11 +5,11 @@ import numpy as np
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input files
-data1 = np.loadtxt('susceptibility_b62_nf4_vol8.txt')
-data2 = np.loadtxt('susceptibility_b62_nf4_vol16.txt')
+data1 = np.loadtxt('../../data/susceptibility_b62_nf4_vol8.txt')
+data2 = np.loadtxt('../../data/susceptibility_b62_nf4_vol16.txt')
 
-data3 = np.loadtxt('susceptibility_b65_nf4_vol8.txt')
-data4 = np.loadtxt('susceptibility_b65_nf4_vol16.txt')
+data3 = np.loadtxt('../../data/susceptibility_b65_nf4_vol8.txt')
+data4 = np.loadtxt('../../data/susceptibility_b65_nf4_vol16.txt')
 
 # Extract columns for dataset 1
 x1 = data1[:, 0]
@@ -75,7 +75,7 @@ ax1.set_ylabel('$\\chi_P$', fontsize=9, labelpad=10, rotation=90)
 ax2.legend(loc='best')
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('susceptibilities.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('../figures/susceptibilities.pdf', dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()

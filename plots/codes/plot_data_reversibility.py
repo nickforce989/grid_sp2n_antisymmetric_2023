@@ -6,7 +6,7 @@ from scipy.special import erfc
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('rev_test.txt')
+data = np.loadtxt('../../data/rev_test.txt')
 
 # Extract columns
 x = data[:, 0]
@@ -39,7 +39,7 @@ ax.set_xlabel('$n_{\\rm steps}$',fontsize=9)
 ax.set_ylabel('$|\delta H|$',fontsize=9)
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('Rev_test.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('../figures/Rev_test.pdf', dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()

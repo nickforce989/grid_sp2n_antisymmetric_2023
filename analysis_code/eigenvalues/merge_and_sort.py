@@ -19,6 +19,6 @@ for file_name in input_files:
 numbers.sort()
 
 # write the sorted numbers to a file
-with open('unfolded_dist.txt', 'w') as file:
+with open('../../data/unfolded_dist.txt', 'w') as file:
     for number in numbers:
         file.write(str(number) + '\n')

@@ -1,7 +1,7 @@
 import sys
 
 # Read in unfolded_dist.txt
-with open('unfolded_dist.txt', 'r') as f:
+with open('../../data/unfolded_dist.txt', 'r') as f:
     unfolded_dist = list(map(float, f.readlines()))
    
 # Sort the list in ascending order

@@ -6,7 +6,7 @@ from scipy.special import erfc
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('pacc_steps.txt')
+data = np.loadtxt('../../data/pacc_steps.txt')
 
 # Extract columns
 x = data[:, 0]
@@ -39,7 +39,7 @@ ax.set_xlabel('$\langle \Delta H \\rangle $',fontsize=9)
 ax.set_ylabel('$P_{acc}$',fontsize=9)
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('Pacc_steps.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('../figures/Pacc_steps.pdf', dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()

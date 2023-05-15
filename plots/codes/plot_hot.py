@@ -17,8 +17,8 @@ axs = axs.flatten()
 # Create 6 different plots
 for i in range(6):
     # Read data from input files
-    data1 = np.loadtxt(f'bulktrans_sp4_2AS_{5-i+1}.dat')
-    data2 = np.loadtxt(f'bulktrans_sp4_2AS_hot_{5-i+1}.dat')
+    data1 = np.loadtxt(f'../../data/bulktrans_sp4_2AS_{5-i+1}.dat')
+    data2 = np.loadtxt(f'../../data/bulktrans_sp4_2AS_hot_{5-i+1}.dat')
 
     # Extract columns
     x1 = data1[:, 0]
@@ -71,5 +71,5 @@ fig.text(-0.02, 0.5, '$\\langle P \\rangle $', va='center', rotation='vertical',
 fig.tight_layout()
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('bulktrans_plots.pdf', dpi=300, bbox_inches='tight')    
+plt.savefig('../figures/bulktrans_plots.pdf', dpi=300, bbox_inches='tight')    
     

@@ -22,7 +22,7 @@ def fit_func3(x, N, c):
 
 
 # Read the first file and plot it in the corresponding axis
-file = 'spacings_density_2.txt'
+file = '../../data/spacings_density_2.txt'
 with open(file, 'r') as f:
     data = [float(line.strip()) for line in f]
 # Plot the data in the corresponding axis
@@ -59,7 +59,7 @@ ax.plot(x, fit_func3(x, N3, c3), 'm-.', linewidth=2, label='$SU(2N_{\\rm as})/Sp
 
 
 # Read the second file and plot it in the corresponding axis
-file = 'spacings_density_2as.txt'
+file = '../../data/spacings_density_2as.txt'
 with open(file, 'r') as f:
     data = [float(line.strip()) for line in f]
 # Plot the data in the corresponding axis
@@ -94,7 +94,7 @@ fig.text(0.06, 0.5, '$P(s)$', va='center', rotation='vertical', fontsize=9)
 plt.subplots_adjust(hspace=0.4, wspace=0.3)
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('Dw_merged.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('../figures/Dw_merged.pdf', dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()

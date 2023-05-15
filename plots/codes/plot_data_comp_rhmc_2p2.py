@@ -6,7 +6,7 @@ import numpy as np
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('compatibilita_rhmc_2p2.txt')
+data = np.loadtxt('../../data/compatibilita_rhmc_2p2.txt')
 
 # Extract columns
 x = data[:, 0]
@@ -36,7 +36,7 @@ ax.set_xlabel('$am^{\\rm as}_0$',fontsize=9)
 ax.set_ylabel('$\langle P \\rangle_{\\rm HMC} - \langle P \\rangle_{\\rm 2HMC + 2RHMC} $',fontsize=9)
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('Compatibility_rhmc_2p2.pdf', dpi=300, bbox_inches='tight')
+plt.savefig('../figures/Compatibility_rhmc_2p2.pdf', dpi=300, bbox_inches='tight')
 
 # Display the plot
 plt.show()
