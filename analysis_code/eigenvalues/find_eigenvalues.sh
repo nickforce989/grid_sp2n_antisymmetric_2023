@@ -5,9 +5,7 @@
 # finds the eigenvalues for each file.                          #
 # NB: Before running this modify "find_eigenvalues.py" in       #
 # "g5Dw_Operator_whatever.txt" in "g5Dw_Operator_1.txt" and     #
-# "eigenvalues_whatever.txt" to "eigenvalues_1.txt"             #
-# NNB: RUN IT JUST ONCE, IF RE-RUN, RECOPY AND PASTE THE FILES  #
-# IN THE DIRECTORY.					          #
+# "eigenvalues_whatever.txt" to "eigenvalues_1.txt"             #				          #
 #################################################################
 
 counter=1
