@@ -35,7 +35,7 @@ for i in {1..13}; do
   m=$((n+200))
 
   # Update the output file name based on the new values of n and m
-  output_file="./hmc_\${SLURM_JOB_ID}_vol12_b69-am08_${n}-${m}.out"
+  output_file="./../../raw_data/hmc_\${SLURM_JOB_ID}_vol12_b69-am08_${n}-${m}.out"
 
   # Use sed to modify the last line of the file 'test'
   sed -i "\$s#.*# > $output_file#" test_WF
@@ -76,7 +76,7 @@ for i in {1..13}; do
   m=$((n+200))
 
   # Update the output file name based on the new values of n and m
-  output_file="./hmc_\${SLURM_JOB_ID}_vol12_b68-am08_${n}-${m}.out"
+  output_file="./../../raw_data/hmc_\${SLURM_JOB_ID}_vol12_b68-am08_${n}-${m}.out"
 
   # Use sed to modify the last line of the file 'test'
   sed -i "\$s#.*# > $output_file#" test_WF

@@ -30,10 +30,10 @@ input_files = [f for f in os.listdir(directory2) if f.endswith(".out") and "b69"
 input_files.sort(key=lambda f: int(f.split("_")[-1].split("-")[-1].split(".")[0])) # sort by last number before ".out"
 directory = '../../raw_data/'
 modified_names = [os.path.join(directory, name) for name in input_files]
-process_files(modified_names, "../../data2/top_charges_b69-am08.txt", "../../data2/top_charges_b69-am08_with_index.txt")
+process_files(modified_names, "../../data/top_charges_b69-am08.txt", "../../data/top_charges_b69-am08_with_index.txt")
 
 input_files = [f for f in os.listdir(directory2) if f.endswith(".out") and "b68" in f]
 input_files.sort(key=lambda f: int(f.split("_")[-1].split("-")[-1].split(".")[0])) # sort by last number before ".out"
 modified_names = [os.path.join(directory2, name) for name in input_files]
-process_files(modified_names, "../../data2/top_charges_b68-am08.txt", "../../data2/top_charges_b68-am08_with_index.txt")
+process_files(modified_names, "../../data/top_charges_b68-am08.txt", "../../data/top_charges_b68-am08_with_index.txt")
 
