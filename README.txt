@@ -19,3 +19,11 @@ paper.
 4) The fourth directory is called 'raw_data'. Here you are expected to put the raw data, which will be
 analysed through the codes in 'analysis_code' and whose deriving data will be put in 'data' and will
 be plotted with the codes in 'plots' and saved in 'plots/figures'.
+
+So far, the procedure is automatic at three levels
+ - Submission: each directory in 'analysis_code' has a code that will generate the raw data and put them
+   in the 'raw_data' directory.
+ - Analysis: the same directory will contain a code that if ran will generate from the raw data contained
+   in 'raw_data' the analysed data, and will put them in 'data'.
+ - Plot: the directory 'plots' contains subdirectories. For each of them there will be one code that if
+   ran, it will use the data in 'data' and generate the plots exactly as they are shown in the paper.
