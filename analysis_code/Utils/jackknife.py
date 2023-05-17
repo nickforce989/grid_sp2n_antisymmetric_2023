@@ -18,9 +18,9 @@ def compute_jackknife(data):
     variance = sum((avg - mean)**2 for avg in averages) * (num_blocks - 1) / num_blocks
     return (variance ** 0.5)
 
-output_file = open("../../data/output_jackknife.txt", "w")
+output_file = open("../../../data/output_jackknife.txt", "w")
 for i in range(1, 451):
-    input_file = f"../../data/output_{i}.txt"
+    input_file = f"../../../data/output_{i}.txt"
     if os.path.isfile(input_file):
         data = []
         with open(input_file) as f:

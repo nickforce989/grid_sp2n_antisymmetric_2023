@@ -17,9 +17,9 @@ def compute_bootstrap(data):
     variance = sum((avg - mean)**2 for avg in averages) / (num_samples - 1)
     return (variance ** 0.5)
 
-output_file = open("../../data/output_bootstrap.txt", "w")
+output_file = open("../../../data/output_bootstrap.txt", "w")
 for i in range(1, 15):
-    input_file = f"../../data/output_{i}.txt"
+    input_file = f"../../../data/output_{i}.txt"
     if os.path.isfile(input_file):
         data = []
         with open(input_file) as f:

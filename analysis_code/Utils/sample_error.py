@@ -10,9 +10,9 @@ def compute_sample_error(data):
     variance = sum((x - mean)**2 for x in data) / (n - 1)
     return math.sqrt(variance) / math.sqrt(n)
 
-output_file = open("../../data/output_sample.txt", "w")
+output_file = open("../../../data/output_sample.txt", "w")
 for i in range(1, 451):
-    input_file = f"../../data/output_{i}.txt"
+    input_file = f"../../../data/output_{i}.txt"
     if os.path.isfile(input_file):
         data = []
         with open(input_file) as f:
