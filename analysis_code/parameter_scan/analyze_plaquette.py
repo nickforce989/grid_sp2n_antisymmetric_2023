@@ -1,35 +1,33 @@
-#################################################################################
-# Analysis for a parameter scan for a Sp(4) with Nf 2AS fermions.               #
-# This will find all the plaquette values for that theory with jackknife errors #
-# You expect to have a directory of files like 'hmc_7516154-b62_am-14.out'      #
-# NB: You can fix the thermalization of values with therm_num.                  #
-#################################################################################
-
 import re
 import numpy as np
 import os
 import glob
+import sys
 
-# Define the values of beta to loop over in ascending order
-beta_values = [5.8, 6.3, 6.0]
-sorted_beta_values = sorted(beta_values)
+# Get beta values from command line arguments
+beta_values = sorted([float(arg) for arg in sys.argv[1:-3]])
 
-# Thermalisation of plaquette values 
-therm_num = 100
+# Get therm_num from command line argument
+therm_num = int(sys.argv[-2])
+
+flavours = int(sys.argv[-1])
 
 # Initialize a dictionary to store the results
 results = {}
 
 # Iterate over each beta value
-# Iterate over each beta value
-for n, beta in enumerate(sorted_beta_values, start=1):
+for n, beta in enumerate(beta_values, start=1):
     # Initialize a dictionary to store the results for this beta value
     results = {}
-    # Get list of all files with names matching the pattern 'hmc_b{beta}_*' in the same directory
-    pattern = f"../../raw_data/hmc_*-b{int(beta*10)}_*.out"
+    # Get list of all files with names matching the pattern 'hmc_nf{flavours}_*-b{int(beta*10)}_*.out' in the same directory
+    pattern = f"../../raw_data/hmc_nf{flavours}_*-b{int(beta*10)}_*.out"
     files = glob.glob(pattern)
     files = [f for f in files if os.path.isfile(f)]
 
+    # Check if any files were found
+    if not files:
+        print(f"No files found for beta = {beta} and flavours = {flavours}")
+        continue
 
     # Iterate over each file
     for filename in files:
@@ -46,7 +44,7 @@ for n, beta in enumerate(sorted_beta_values, start=1):
         # Select the last plaquette value for each line
         last_plaquettes = [plaquette_values[i] for i in range(len(plaquette_values)-1) if i+1 not in plaquette_values[:i]]
 
-        # Eliminate first 150 values
+        # Eliminate first therm_num values
         last_plaquettes = last_plaquettes[therm_num:]
 
         # Compute bin size and number of bins
@@ -82,7 +80,7 @@ for n, beta in enumerate(sorted_beta_values, start=1):
         os.remove("../../data/plaquette_lines.txt")
 
     # Write the results to the output file in ascending order based on the first column
-    with open("../../data/bulktrans_nf4_sp4_2AS_%d.dat" % n, "w") as f:
+    with open(f"../../data/bulktrans_nf{flavours}_sp4_2AS_{n}.dat", "w") as f:
         for key in sorted(results.keys(), reverse=True):
             bin_avg, bin_err = results[key]
-            f.write(f"{key} {bin_avg} {bin_err}\n")
+            f.write(f"-{key} {bin_avg} 0.0 {bin_err}\n")

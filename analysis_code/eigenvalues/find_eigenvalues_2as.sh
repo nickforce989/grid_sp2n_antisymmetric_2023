@@ -9,10 +9,10 @@
 #################################################################
 
 directory="../../raw_data"
-prefix="g5Dw_Operator_"
+prefix="2as_g5Dw_Operator_"
 
 # Get the list of files with integer numbers
-file_list=$(ls -1 "$directory"/g5Dw_Operator_*.txt 2>/dev/null | sort -V)
+file_list=$(ls -1 "$directory"/2as_g5Dw_Operator_*.txt 2>/dev/null | sort -V)
 
 # Rename the files
 counter=1
@@ -24,20 +24,20 @@ do
 done
 
 
-# Loop through files named g5Dw_Operator_n.txt
+# Loop through files named 2as_g5Dw_Operator_n.txt
 for (( k=1; ; k++ )); do
-  if [[ -f "../../raw_data/g5Dw_Operator_$k.txt" ]]; then
+  if [[ -f "../../raw_data/2as_g5Dw_Operator_$k.txt" ]]; then
     # Modify the second line of the Python code to write to g5Dw_Operator_1.txt
-    sed -i "s|../../raw_data/g5Dw_Operator_[0-9]*.txt|../../raw_data/g5Dw_Operator_$k.txt|" find_eigenvalues.py
+    sed -i "s|../../raw_data/2as_g5Dw_Operator_[0-9]*.txt|../../raw_data/2as_g5Dw_Operator_$k.txt|" find_eigenvalues_2as.py
 
     # Modify the second line of the Python code to write to eigenvalues_1.txt
-    sed -i "s|../../data/eigenvalues_[0-9]*.txt|../../data/eigenvalues_$k.txt|" find_eigenvalues.py
+    sed -i "s|../../data/2as_eigenvalues_[0-9]*.txt|../../data/2as_eigenvalues_$k.txt|" find_eigenvalues_2as.py
 
     # Run the modified Python code which finds the eigenvalues for a tensor
-    if python find_eigenvalues.py; then
-      echo "Eigenvalues found for g5Dw_Operator_$k.txt"
+    if python find_eigenvalues_2as.py; then
+      echo "Eigenvalues found for 2as_g5Dw_Operator_$k.txt"
     else
-      echo "Failed to find eigenvalues for g5Dw_Operator_$k.txt"
+      echo "Failed to find eigenvalues for 2as_g5Dw_Operator_$k.txt"
       continue
     fi
   else
@@ -48,10 +48,10 @@ done
 
 
 directory="../../data"
-prefix="eigenvalues_"
+prefix="2as_eigenvalues_"
 
 # Get the list of files with integer numbers
-file_list=$(ls -1 "$directory"/eigenvalues_*.txt 2>/dev/null | sort -V)
+file_list=$(ls -1 "$directory"/2as_eigenvalues_*.txt 2>/dev/null | sort -V)
 
 # Rename the files
 counter=1

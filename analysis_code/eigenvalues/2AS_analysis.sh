@@ -6,5 +6,5 @@
 # 2AS representation                                     #
 ##########################################################
 
-bash find_eigenvalues.sh
+bash find_eigenvalues_2as.sh
 bash find_distribution_2AS.sh

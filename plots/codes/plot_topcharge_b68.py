@@ -6,7 +6,7 @@ from scipy.stats import norm
 plt.style.use("paperdraft.mplstyle")
 
 # Load data from first file
-data1 = np.loadtxt('../../data/top_charges_b68-am68_with_index.txt')
+data1 = np.loadtxt('../../data/top_charges_b68-am08_with_index.txt')
 x = data1[:, 0]
 y = data1[:, 1]
 
@@ -24,7 +24,7 @@ ax1.set_ylim([-1.2*np.max(np.abs(y)), 1.2*np.max(np.abs(y))])
 ax1.legend(loc='lower left', fontsize=12, frameon=False)
 
 # Load data from second file
-data2 = np.loadtxt('top_charges_b68-am68.txt')
+data2 = np.loadtxt('../../data/top_charges_b68-am08.txt')
 # Normalize the data for histogram
 data2_norm = (data2 - np.mean(data2)) / np.std(data2)
 
@@ -63,6 +63,3 @@ fig.subplots_adjust(left=0.10, right=0.6, bottom=0.1, top=0.9)
 
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/topological_charge_b68.pdf', dpi=300, bbox_inches='tight')
-
-plt.show()
-

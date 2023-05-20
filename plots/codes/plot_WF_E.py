@@ -5,10 +5,10 @@ import numpy as np
 plt.style.use("paperdraft.mplstyle")
 
 # Load data from files
-data1 = np.loadtxt('../../data/WF_b68_am-08_l8.txt')
-data2 = np.loadtxt('../../data/WF_b68_am-08_l8_clover.txt')
-data3 = np.loadtxt('../../data/WF_b69_am-08_l8.txt')
-data4 = np.loadtxt('../../data/WF_b69_am-08_l8_clover.txt')
+data1 = np.loadtxt('../../data2/WF_b68_am-08_l8.txt')
+data2 = np.loadtxt('../../data2/WF_b68_am-08_l8_clover.txt')
+data3 = np.loadtxt('../../data2/WF_b69_am-08_l8.txt')
+data4 = np.loadtxt('../../data2/WF_b69_am-08_l8_clover.txt')
 
 # Set up plot
 fig, ax = plt.subplots()
@@ -51,4 +51,3 @@ ax.fill_between(data3[:, 0], data3[:, 1] - data3[:, 3], data3[:, 1] + data3[:, 3
 ax.fill_between(data4[:, 0], data4[:, 1] - data4[:, 3], data4[:, 1] + data4[:, 3], color=line_style4, alpha=0.35)
 
 plt.savefig('../figures/WF_b68_am-08_l8.pdf', dpi=300, bbox_inches='tight')
-plt.show()

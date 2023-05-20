@@ -1,4 +1,0 @@
-1) submit_eigenvalues_matrices.sh --> Submit jobs
-2) 2AS_analysis.sh or fund_analysis.sh --> Is for analysis
-
-All the rest is utilities.

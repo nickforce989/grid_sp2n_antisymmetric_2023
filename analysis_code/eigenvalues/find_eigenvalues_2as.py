@@ -28,7 +28,7 @@ def compute_eigenvalues(a, n):
     return eigenvalues
 
 # Read in matrix from input file
-a, n = read_matrix("../../raw_data/g5Dw_Operator_17.txt")
+a, n = read_matrix("../../raw_data/2as_g5Dw_Operator_22.txt")
 
 # Compute eigenvalues
 eigenvalues = compute_eigenvalues(a, n)
@@ -36,4 +36,4 @@ eigenvalues = compute_eigenvalues(a, n)
 # Print sorted eigenvalues
 print("Eigenvalues (sorted):", eigenvalues)
 
-np.savetxt("../../data/eigenvalues_17.txt",eigenvalues, delimiter="\n")
+np.savetxt("../../data/2as_eigenvalues_22.txt",eigenvalues, delimiter="\n")

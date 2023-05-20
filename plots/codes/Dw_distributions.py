@@ -28,7 +28,7 @@ with open(file, 'r') as f:
 # Plot the data in the corresponding axis
 col = 0
 ax = axs[col]
-Nbins = 186
+Nbins = 71
 y, x, _ = ax.hist(data, Nbins, color='blue', alpha=.3, density=True, edgecolor="black")
 erry = np.sqrt(y)
 x = (x[1:] + x[:-1]) / 2  # for len(x)==len(y)
@@ -65,7 +65,7 @@ with open(file, 'r') as f:
 # Plot the data in the corresponding axis
 col = 1
 ax = axs[col]
-Nbins = 93
+Nbins = 73
 y, x, _ = ax.hist(data, Nbins, color='blue', alpha=.3, density=True, edgecolor="black")
 erry = np.sqrt(y)
 x = (x[1:] + x[:-1]) / 2  # for len(x)==len(y)
@@ -95,6 +95,3 @@ plt.subplots_adjust(hspace=0.4, wspace=0.3)
 
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/Dw_merged.pdf', dpi=300, bbox_inches='tight')
-
-# Display the plot
-plt.show()

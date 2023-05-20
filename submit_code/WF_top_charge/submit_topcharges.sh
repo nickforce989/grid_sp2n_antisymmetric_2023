@@ -18,7 +18,7 @@ sed -i 's/--confstart.*/--confstart 150 \\/' test_WF
 sed -i 's/--confend.*/--confend 350 \\/' test_WF
 
 # Update the output file name based on the new values of n and m
-output_file="./hmc_\${SLURM_JOB_ID}_vol12_b69-am08_${n}-${m}.out"
+output_file="./../../raw_data/hmc_\${SLURM_JOB_ID}_vol12_b69-am08_${n}-${m}.out"
 
 # Use sed to modify the last line of the file 'test'
 sed -i "\$s#.*# > $output_file#" test_WF
