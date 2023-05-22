@@ -1,0 +1,37 @@
+#!/bin/bash
+#SBATCH --job-name test1
+#SBATCH --qos standard
+#SBATCH --time 2-0:00:00
+#SBATCH --account dp208
+#SBATCH --nodes=1
+#SBATCH --ntasks=4
+#SBATCH --ntasks-per-node=4
+#SBATCH --cpus-per-task=8
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:4
+#SBATCH --output=%x.%j.out
+#SBATCH --error=%x.%j.err
+
+module purge
+module load cuda/11.4.1  openmpi/4.1.1-cuda11.4.1  ucx/1.12.0-cuda11.4.1
+
+export LD_LIBRARY_PATH=/home/dp208/dp208/dc-forz1/grid/prefix/lib:/mnt/lustre/tursafs1/apps/basestack/cuda-11.4.1/ucx/1.12.0-cuda11.4.1/lib:/mnt/lustre/tursafs1/apps/basestack/cuda-11.4.1/openmpi/4.1.1-cuda11.4.1/lib:/mnt/lustre/tursafs1/apps/cuda/11.4.1/lib64/
+
+export OMP_NUM_THREADS=4
+export OMPI_MCA_b56tl=^uct,openib
+export UCX_TLS=gdr_copy,rc,rc_x,sm,cuda_copy,cuda_ipc
+export UCX_RNDV_SCHEME=put_zcopy
+export UCX_RNDV_THRESH=16384
+export UCX_IB_GPU_DIRECT_RDMA=yes
+export UCX_MEMTYPE_CACHE=n
+
+
+mpirun -np 1 -x LRANK=0 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_DW_Eigenvalues /scratch/s.2227764/conf_saved_eigen/ckpoint_lat.9800 --wheresave /scratch/s.2227764/Dw_stuff_new/g5Dw_Operator_49.txt &
+
+mpirun -np 1 -x LRANK=1 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_DW_Eigenvalues /scratch/s.2227764/conf_saved_eigen/ckpoint_lat.10000 --wheresave /scratch/s.2227764/Dw_stuff_new/g5Dw_Operator_50.txt &
+
+mpirun -np 1 -x LRANK=2 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_DW_Eigenvalues /scratch/s.2227764/conf_saved_eigen/ckpoint_lat.10200 --wheresave /scratch/s.2227764/Dw_stuff_new/g5Dw_Operator_51.txt &
+
+mpirun -np 1 -x LRANK=3 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_DW_Eigenvalues /scratch/s.2227764/conf_saved_eigen/ckpoint_lat.10400 --wheresave /scratch/s.2227764/Dw_stuff_new/g5Dw_Operator_52.txt &
+
+wait
