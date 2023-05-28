@@ -6,7 +6,7 @@ import numpy as np
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('../../data/expdh.txt')
+data = np.loadtxt('../../data2/expdh.txt')
 
 # Extract columns
 x = data[:, 0]
@@ -28,7 +28,7 @@ ax.axhline(y=1.0, color='red', linestyle='-')
 
 # Customize x and y ranges
 ax.set_xlim([0.035, 0.075])
-ax.set_ylim([0.980, 1.010])
+ax.set_ylim([0.970, 1.020])
 
 ax.tick_params(axis='both', which='major', labelsize=9)
 
@@ -37,6 +37,3 @@ ax.set_ylabel('$\langle \exp(-\Delta H) \\rangle $',fontsize=9)
 
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/creutz.pdf', dpi=300, bbox_inches='tight')
-
-# Display the plot
-plt.show()

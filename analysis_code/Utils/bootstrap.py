@@ -1,5 +1,6 @@
 import os
 import random
+import sys
 
 def compute_bootstrap(data):
     """
@@ -17,23 +18,32 @@ def compute_bootstrap(data):
     variance = sum((avg - mean)**2 for avg in averages) / (num_samples - 1)
     return (variance ** 0.5)
 
-output_file = open("../../../data/output_bootstrap.txt", "w")
-for i in range(1, 15):
-    input_file = f"../../../data/output_{i}.txt"
-    if os.path.isfile(input_file):
-        data = []
-        with open(input_file) as f:
-            lines_to_skip = 20
-            for j, line in enumerate(f):
-                if j < lines_to_skip:
-                    continue
-                numbers = line.strip().split()
-                if numbers:
-                    data.append(float(numbers[-1]))
-        if data:
-            average = sum(data) / len(data)
-            error = compute_bootstrap(data)
-            output_file.write(f"{average}\t{error}\n")
+if len(sys.argv) < 2:
+    print("Please provide an input file as an argument.")
+    sys.exit(1)
 
+input_file = sys.argv[1]
+if not os.path.isfile(input_file):
+    print(f"Input file '{input_file}' does not exist.")
+    sys.exit(1)
+
+data = []
+with open(input_file) as f:
+    lines_to_skip = 20
+    for j, line in enumerate(f):
+        if j < lines_to_skip:
+            continue
+        numbers = line.strip().split()
+        if numbers:
+            data.append(float(numbers[-1]))
+
+if not data:
+    print("No valid data found in the input file.")
+    sys.exit(1)
+
+average = sum(data) / len(data)
+error = compute_bootstrap(data)
+
+output_file = open("output_bootstrap.txt", "w")
+output_file.write(f"{average}\t{error}\n")
 output_file.close()
-

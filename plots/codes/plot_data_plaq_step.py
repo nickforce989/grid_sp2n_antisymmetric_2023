@@ -6,7 +6,7 @@ import numpy as np
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('../../data/plaquette_step.txt')
+data = np.loadtxt('../../data2/plaquette_step.txt')
 
 # Extract columns
 x = data[:, 0]
@@ -24,11 +24,11 @@ ax = fig.add_subplot(111)
 ax.errorbar(x, y, xerr=err_x, yerr=err_y, fmt='o', markersize=5, capsize=3, color='black')
 
 # Add horizontal red line at y=0
-ax.axhline(y=0.535717, color='red', linestyle='-')
+ax.axhline(y=0.5367974, color='red', linestyle='-')
 
 # Customize x and y ranges
 ax.set_xlim([0.035, 0.075])
-ax.set_ylim([0.534, 0.537])
+ax.set_ylim([0.5355, 0.5383])
 
 ax.tick_params(axis='both', which='major', labelsize=9)
 
@@ -37,6 +37,3 @@ ax.set_ylabel('$\langle P \\rangle $',fontsize=9)
 
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/output.pdf', dpi=300, bbox_inches='tight')
-
-# Display the plot
-plt.show()

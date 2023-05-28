@@ -76,6 +76,7 @@ Then the next two steps can be splitted or done in one go:
 3.a) AUTOMATED WAY, ANALYSIS+PLOT:
 
 There will be a directory called 'automated_results/':
+- 'initial_results.sh' will analyse and plot the data for the preliminary results in figs. 2-6.
 - 'parameter_scan.sh' will analyse and plot the data for the parameter scan. Usage of it's reported 
    at the beginning of the code.
 - 'WF.sh' will analyse and plot both plots from Wilson flow. 
@@ -95,6 +96,7 @@ as the ones shown in the paper.
 3.b.1) Analyse data. 
    This can be done in an automated way, using the code in 'analysis_code/'.
    In particular:
+   - The preliminary studies in figs. 2-6 can be done using the codes in 'analysis_code/initial_tests/'.
    - The parameter scan for each Sp(4) theory with Nf 2AS fermions can be analysed using 'analysis_code/
      parameter_scan/analyze_plaquette.py'. 
    - The spacing distribution of eigenvalues can be analysed through '2AS_analysis.sh' or 'fund_analysis' 
@@ -117,6 +119,7 @@ as the ones shown in the paper.
 -----------------------------------------------------------------------------------------------------
 
 Here we report a list of picture number and code used to plot them in 'plots/codes/':
+   'figure1.nb' --> Fig. 1
    'plot_data_creutz' --> Fig. 2
    'plot_data_plaq_step.py' --> Fig. 3
    'plot_data_dH_steps.py' --> Fig. 4

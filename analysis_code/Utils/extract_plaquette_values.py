@@ -1,0 +1,35 @@
+import sys
+import re
+import os
+
+def extract_last_number(line):
+    numbers = re.findall(r'\d+\.\d+|\d+', line)
+    if numbers:
+        return float(numbers[-1])
+    return None
+
+if len(sys.argv) != 4:
+    print("Usage: python extract_numbers.py input_file output_file N_thermalise")
+    sys.exit(1)
+
+input_file = "../../raw_data/" + sys.argv[1]
+output_file = "../../data/" + sys.argv[2]
+lines_to_delete = int(sys.argv[3])
+
+try:
+    with open(input_file, 'r') as f:
+        plaquette_numbers = []
+        for line in f:
+            if 'Plaquette' in line:
+                number = extract_last_number(line)
+                if number is not None:
+                    plaquette_numbers.append(str(number))
+
+    with open(output_file, 'w') as f:
+        f.write('\n'.join(plaquette_numbers[lines_to_delete:]))
+    print(f"Numbers extracted from '{input_file}', saved to '{output_file}', and {lines_to_delete} lines deleted from the beginning.")
+
+except FileNotFoundError:
+    print(f"File '{input_file}' not found.")
+except IOError:
+    print("Error occurred while reading or writing the files.")

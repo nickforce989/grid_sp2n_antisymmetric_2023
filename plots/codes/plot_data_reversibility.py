@@ -40,6 +40,3 @@ ax.set_ylabel('$|\delta H|$',fontsize=9)
 
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/Rev_test.pdf', dpi=300, bbox_inches='tight')
-
-# Display the plot
-plt.show()
