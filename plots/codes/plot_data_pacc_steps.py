@@ -6,7 +6,7 @@ from scipy.special import erfc
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('../../data2/pacc_steps.txt')
+data = np.loadtxt('../../data/pacc_steps.txt')
 
 # Extract columns
 x = data[:, 0]
@@ -30,7 +30,7 @@ x_line = np.linspace(0.0, 0.080, 100)  # 100 points for smoother line
 ax.plot(x_line, erfc(np.sqrt(x_line)/2), color='red', linestyle='-')
 
 # Customize x and y ranges
-ax.set_xlim([0.0, 0.05])
+ax.set_xlim([0.0, 0.053])
 ax.set_ylim([0.85, 1.0])
 
 ax.tick_params(axis='both', which='major', labelsize=9)

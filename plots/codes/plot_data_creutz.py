@@ -6,7 +6,7 @@ import numpy as np
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('../../data2/expdh.txt')
+data = np.loadtxt('../../data/expdh.txt')
 
 # Extract columns
 x = data[:, 0]

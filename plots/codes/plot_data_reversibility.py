@@ -31,7 +31,7 @@ ax.plot(x_line, erfc(np.sqrt(x_line)/2), color='red', linestyle='-')
 
 # Customize x and y ranges
 ax.set_xlim([13, 29])
-ax.set_ylim([0.9e-11, 1.9e-11])
+ax.set_ylim([0.8e-11, 2.2e-11])
 
 ax.tick_params(axis='both', which='major', labelsize=9)
 

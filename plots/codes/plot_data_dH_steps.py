@@ -6,7 +6,7 @@ from scipy.optimize import curve_fit
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('../../data2/dH_steps.txt')
+data = np.loadtxt('../../data/dH_steps.txt')
 
 # Extract columns
 x = data[:, 0]
