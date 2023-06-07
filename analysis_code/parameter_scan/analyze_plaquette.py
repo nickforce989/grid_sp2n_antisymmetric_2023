@@ -5,7 +5,7 @@ import glob
 import sys
 
 # Get beta values from command line arguments
-beta_values = sorted([float(arg) for arg in sys.argv[1:-3]])
+beta_values = sorted([float(arg) for arg in sys.argv[1:-2]])
 
 # Get therm_num from command line argument
 therm_num = int(sys.argv[-2])
@@ -19,8 +19,8 @@ results = {}
 for n, beta in enumerate(beta_values, start=1):
     # Initialize a dictionary to store the results for this beta value
     results = {}
-    # Get list of all files with names matching the pattern 'hmc_nf{flavours}_*-b{int(beta*10)}_*.out' in the same directory
-    pattern = f"../../raw_data/hmc_nf{flavours}_*-b{int(beta*10)}_*.out"
+    # Get list of all files with names matching the pattern 'hmc_nf{flavours}_*_b{int(beta*10)}-*.out' in the same directory
+    pattern = f"../../raw_data/hmc_nf{flavours}_*_b{int(beta*10)}-*.out"
     files = glob.glob(pattern)
     files = [f for f in files if os.path.isfile(f)]
 
@@ -32,7 +32,7 @@ for n, beta in enumerate(beta_values, start=1):
     # Iterate over each file
     for filename in files:
         # Use grep command to select relevant lines and write to temporary file
-        os.system(f"grep 'Plaquette' {filename} | awk '{{print $NF}}' > ../../data/plaquette_lines.txt")
+        os.system(f"grep 'Plaquette' {filename} | awk '{{print $NF}}' > ../../data2/plaquette_lines.txt")
 
         # Read in the temporary file
         with open("../../data/plaquette_lines.txt", "r") as f:
@@ -65,7 +65,7 @@ for n, beta in enumerate(beta_values, start=1):
         bin_err = np.sqrt((num_bins - 1) / num_bins * np.sum((bin_avgs - bin_avg) ** 2))
 
         # Get integer value from filename using bash commands
-        integer_val = os.popen(f"basename {filename} | sed 's/.*-\\([0-9]\\+\\)\\.out/\\1/'").read().strip()
+        integer_val = os.popen(f"basename {filename} | sed 's/.*-am\\([0-9]\\+\\)\\.out/\\1/'").read().strip()
         if not integer_val.isdigit():
             print(f"Error: No integer value found in filename {filename}")
             continue
