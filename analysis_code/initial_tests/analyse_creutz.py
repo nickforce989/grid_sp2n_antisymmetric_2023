@@ -30,7 +30,7 @@ def process_file(file_path):
     bootstrap_error = compute_bootstrap_error(exp_numbers, num_samples)
     return average, bootstrap_error
 
-input_files = ['../../raw_data/hmc_7530200-step14.out', '../../raw_data/hmc_7530201-step16.out', '../../raw_data/hmc_7530202-step18.out', '../../raw_data/hmc_7530203-step22.out', '../../raw_data/hmc_7530204-step26.out']  # Replace with your input file paths
+input_files = ['../../raw_data/hmc_7534350-step14.out', '../../raw_data/hmc_7534348-step16.out', '../../raw_data/hmc_7534347-step18.out', '../../raw_data/hmc_7534346-step22.out', '../../raw_data/hmc_7534360-step26.out']  # Replace with your input file paths
 output_file = '../../data/expdh.txt'  # Replace with the desired output file path
 
 output_lines = []

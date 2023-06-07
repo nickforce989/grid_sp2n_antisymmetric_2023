@@ -1,9 +1,7 @@
 import re
 import numpy as np
 
-file_paths = ['../../raw_data/hmc_7530200-step14.out', '../../raw_data/hmc_7530201-step16.out',
-              '../../raw_data/hmc_7530202-step18.out', '../../raw_data/hmc_7530203-step22.out',
-              '../../raw_data/hmc_7530204-step26.out']
+file_paths = ['../../raw_data/hmc_7534350-step14.out', '../../raw_data/hmc_7534348-step16.out', '../../raw_data/hmc_7534347-step18.out', '../../raw_data/hmc_7534346-step22.out', '../../raw_data/hmc_7534360-step26.out']  # Replace with your input file paths
 
 output_file = '../../data/dH_steps.txt'
 block_fraction = 0.1
@@ -15,12 +13,12 @@ with open(output_file, 'w') as file:
         with open(file_path, 'r') as input_file:
             lines = input_file.readlines()
             for line in lines:
-                if 'dH =' in line:
-                    match = re.search(r'dH = (-?\d+\.\d+)', line)
+                if 'exp(-dH) =' in line:
+                    match = re.search(r'exp\(-dH\) = (-?\d+\.\d+)', line)
                     if match:
-                        dH_values.append(float(match.group(1)))
+                        dH_values.append(-np.log(float(match.group(1))))
 
-        dH_values = np.array(dH_values[200:])  # Exclude the first 200 values
+        dH_values = np.array(dH_values[400:])  # Exclude the first 200 values
         average = np.mean(dH_values)
 
         block_size = int(len(dH_values) * block_fraction)
