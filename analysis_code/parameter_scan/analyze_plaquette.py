@@ -32,7 +32,7 @@ for n, beta in enumerate(beta_values, start=1):
     # Iterate over each file
     for filename in files:
         # Use grep command to select relevant lines and write to temporary file
-        os.system(f"grep 'Plaquette' {filename} | awk '{{print $NF}}' > ../../data2/plaquette_lines.txt")
+        os.system(f"grep 'Plaquette' {filename} | awk '{{print $NF}}' > ../../data/plaquette_lines.txt")
 
         # Read in the temporary file
         with open("../../data/plaquette_lines.txt", "r") as f:
