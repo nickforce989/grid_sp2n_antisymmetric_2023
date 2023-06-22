@@ -1,12 +1,21 @@
-
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
+
+# Check if the '--dp' flag is present
+use_precomputed_data = '--dp' in sys.argv
+
+# Set the data path based on the flag
+if use_precomputed_data:
+    data_path = '../../precomputed_data/initial_tests/expdh.txt'
+else:
+    data_path = '../../data/initial_tests/expdh.txt'
 
 # Activating text rendering by LaTeX
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('../../data/expdh.txt')
+data = np.loadtxt(data_path)
 
 # Extract columns
 x = data[:, 0]
@@ -32,8 +41,8 @@ ax.set_ylim([0.970, 1.020])
 
 ax.tick_params(axis='both', which='major', labelsize=9)
 
-ax.set_xlabel('$\Delta \\tau$',fontsize=9)
-ax.set_ylabel('$\langle \exp(-\Delta H) \\rangle $',fontsize=9)
+ax.set_xlabel('$\Delta \\tau$', fontsize=9)
+ax.set_ylabel('$\langle \exp(-\Delta H) \\rangle $', fontsize=9)
 
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/creutz.pdf', dpi=300, bbox_inches='tight')

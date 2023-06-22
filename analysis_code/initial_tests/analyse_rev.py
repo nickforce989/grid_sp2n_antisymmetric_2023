@@ -2,17 +2,17 @@ import re
 import random
 import numpy as np
 
-file_paths = ['../../raw_data/hmc_7523179_rev16.out',
-              '../../raw_data/hmc_7523299_rev17.out',
-              '../../raw_data/hmc_7523300_rev18.out',
-              '../../raw_data/hmc_7523301_rev19.out',
-              '../../raw_data/hmc_7523304_rev20.out',
-              '../../raw_data/hmc_7523305_rev21.out',
-              '../../raw_data/hmc_7523306_rev22.out',
-              '../../raw_data/hmc_7523307_rev23.out',
-              '../../raw_data/hmc_7523308_rev24.out',
-              '../../raw_data/hmc_7523309_rev25.out',
-              '../../raw_data/hmc_7523310_rev26.out']
+file_paths = ['../../raw_data/reversibility/hmc_rev16.out',
+              '../../raw_data/reversibility/hmc_rev17.out',
+              '../../raw_data/reversibility/hmc_rev18.out',
+              '../../raw_data/reversibility/hmc_rev19.out',
+              '../../raw_data/reversibility/hmc_rev20.out',
+              '../../raw_data/reversibility/hmc_rev21.out',
+              '../../raw_data/reversibility/hmc_rev22.out',
+              '../../raw_data/reversibility/hmc_rev23.out',
+              '../../raw_data/reversibility/hmc_rev24.out',
+              '../../raw_data/reversibility/hmc_rev25.out',
+              '../../raw_data/reversibility/hmc_rev26.out']
 
 def extract_float(line):
     match = re.search(r'dH =\s*(-?\d+(?:\.\d+)?(?:e-?\d+)?)', line)
@@ -46,7 +46,7 @@ for file_path in file_paths:
     error = compute_bootstrap_error(floats, num_samples=min(len(floats), 1000))
     results.append((rev_number, average, error))
 
-output_file = '../../data/rev_test.txt'
+output_file = '../../data/reversibility/rev_test.txt'
 with open(output_file, 'w') as file:
     for result in results:
         file.write(f'{result[0]} {result[1]} 0.0 {result[2]}\n')

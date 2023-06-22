@@ -1,12 +1,24 @@
+import argparse
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.special import erfc
+
+# Parse command-line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--dp', action='store_true', help='Use alternative data file path')
+args = parser.parse_args()
+
+# Determine data file path based on command-line flag
+if args.dp:
+    data_file_path = '../../precomputed_data/reversibility/rev_test.txt'
+else:
+    data_file_path = '../../data/reversibility/rev_test.txt'
 
 # Activating text rendering by LaTeX
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('../../data/rev_test.txt')
+data = np.loadtxt(data_file_path)
 
 # Extract columns
 x = data[:, 0]
@@ -35,8 +47,8 @@ ax.set_ylim([0.8e-11, 2.2e-11])
 
 ax.tick_params(axis='both', which='major', labelsize=9)
 
-ax.set_xlabel('$n_{\\rm steps}$',fontsize=9)
-ax.set_ylabel('$|\delta H|$',fontsize=9)
+ax.set_xlabel('$n_{\\rm steps}$', fontsize=9)
+ax.set_ylabel('$|\delta H|$', fontsize=9)
 
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/Rev_test.pdf', dpi=300, bbox_inches='tight')

@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.special import erfc
+import sys
 
 # Activating text rendering by LaTeX
 plt.style.use("paperdraft.mplstyle")
@@ -19,15 +19,14 @@ plt.style.use({
     'ytick.color': 'black'
 })
 
-# Define the values for each plot
-y_values_list = [
-    [7.50914940330241, 11.130037903372],
-    [7.50914940330241, 8.05618854289439],
-    [7.50914940330241, 6.53331114256598],
-    [7.50914940330241, 4.97905440935509],
-    [7.50914940330241, 1.43521564137167],
-    [7.50914940330241, 0.502597809352699]
-]
+# Set the file path based on the flag
+if "--dp" in sys.argv:
+    file_path = '../../precomputed_data/force_contribution/forces.txt'
+else:
+    file_path = '../../data/force_contribution/forces.txt'
+
+# Read the y-values from the input file
+y_values_list = np.loadtxt(file_path, usecols=(1, 2)).tolist()
 
 # Set the figure size
 fig, axs = plt.subplots(nrows=3, ncols=2, figsize=(10, 8), sharey=True, sharex=True)
@@ -63,9 +62,5 @@ fig.text(0.06, 0.5, 'MD Force', fontsize=9, va='center', rotation='vertical')
 # Set the figure size before saving
 fig.set_size_inches(6, 4)
 
-
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/forces.pdf', dpi=300, bbox_inches='tight')
-
-# Display the plot
-plt.show()

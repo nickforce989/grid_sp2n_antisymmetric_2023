@@ -26,12 +26,12 @@ export UCX_IB_GPU_DIRECT_RDMA=yes
 export UCX_MEMTYPE_CACHE=n
 
 
-mpirun -np 1 -x LRANK=0 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_DW_Eigenvalues /scratch/s.2227764/conf_saved_eigen/ckpoint_lat.10600 --wheresave /scratch/s.2227764/Dw_stuff_new/g5Dw_Operator_53.txt &
+mpirun -np 1 -x LRANK=0 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./../../../Test_DW_Eigenvalues ./../../../conf_saved_eigen/ckpoint_lat.10600 --wheresave ./../../raw_data/Dw_eigenvalues/g5Dw_Operator_53.txt &
 
-mpirun -np 1 -x LRANK=1 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_DW_Eigenvalues /scratch/s.2227764/conf_saved_eigen/ckpoint_lat.10800 --wheresave /scratch/s.2227764/Dw_stuff_new/g5Dw_Operator_54.txt &
+mpirun -np 1 -x LRANK=1 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./../../../Test_DW_Eigenvalues ./../../../conf_saved_eigen/ckpoint_lat.10800 --wheresave ./../../raw_data/Dw_eigenvalues/g5Dw_Operator_54.txt &
 
-mpirun -np 1 -x LRANK=2 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_DW_Eigenvalues /scratch/s.2227764/conf_saved_eigen/ckpoint_lat.11000 --wheresave /scratch/s.2227764/Dw_stuff_new/g5Dw_Operator_55.txt &
+mpirun -np 1 -x LRANK=2 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./../../../Test_DW_Eigenvalues ./../../../conf_saved_eigen/ckpoint_lat.11000 --wheresave ./../../raw_data/Dw_eigenvalues/g5Dw_Operator_55.txt &
 
-mpirun -np 1 -x LRANK=3 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_DW_Eigenvalues /scratch/s.2227764/conf_saved_eigen/ckpoint_lat.11200 --wheresave /scratch/s.2227764/Dw_stuff_new/g5Dw_Operator_56.txt &
+mpirun -np 1 -x LRANK=3 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./../../../Test_DW_Eigenvalues ./../../../conf_saved_eigen/ckpoint_lat.11200 --wheresave ./../../raw_data/Dw_eigenvalues/g5Dw_Operator_56.txt &
 
 wait

@@ -1,15 +1,32 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import argparse
 
 # Activating text rendering by LaTeX
 plt.style.use("paperdraft.mplstyle")
 
-# Read data from input files
-data1 = np.loadtxt('../../data/susceptibility_b62_nf4_vol8.txt')
-data2 = np.loadtxt('../../data/susceptibility_b62_nf4_vol16.txt')
+# Parse command line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--dp', action='store_true', help='Flag to use precomputed data paths')
+args = parser.parse_args()
 
-data3 = np.loadtxt('../../data/susceptibility_b65_nf4_vol8.txt')
-data4 = np.loadtxt('../../data/susceptibility_b65_nf4_vol16.txt')
+# Define data paths
+if args.dp:
+    data_path1 = '../../precomputed_data/susceptibility/susceptibility_b62_nf4_vol8.txt'
+    data_path2 = '../../precomputed_data/susceptibility/susceptibility_b62_nf4_vol16.txt'
+    data_path3 = '../../precomputed_data/susceptibility/susceptibility_b65_nf4_vol8.txt'
+    data_path4 = '../../precomputed_data/susceptibility/susceptibility_b65_nf4_vol16.txt'
+else:
+    data_path1 = '../../data/susceptibility/susceptibility_b62_nf4_vol8.txt'
+    data_path2 = '../../data/susceptibility/susceptibility_b62_nf4_vol16.txt'
+    data_path3 = '../../data/susceptibility/susceptibility_b65_nf4_vol8.txt'
+    data_path4 = '../../data/susceptibility/susceptibility_b65_nf4_vol16.txt'
+
+# Read data from input files
+data1 = np.loadtxt(data_path1)
+data2 = np.loadtxt(data_path2)
+data3 = np.loadtxt(data_path3)
+data4 = np.loadtxt(data_path4)
 
 # Extract columns for dataset 1
 x1 = data1[:, 0]
@@ -23,13 +40,13 @@ y2 = data2[:, 1]
 err_x2 = data2[:, 2]
 err_y2 = data2[:, 3]
 
-# Extract columns for dataset 1
+# Extract columns for dataset 3
 x3 = data3[:, 0]
 y3 = data3[:, 1]
 err_x3 = data3[:, 2]
 err_y3 = data3[:, 3]
 
-# Extract columns for dataset 2
+# Extract columns for dataset 4
 x4 = data4[:, 0]
 y4 = data4[:, 1]
 err_x4 = data4[:, 2]
@@ -43,24 +60,24 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7, 2.0))
 ax1.errorbar(x1, y1, yerr=err_y1, fmt='o', markersize=5, capsize=3, color='red', label='$\\tilde{V}=(8a)^4$')
 
 # Plot dataset 2 with error bars in purple
-ax1.errorbar(x2, y2, yerr=err_y2, fmt='o', markersize=5, capsize=3, color='purple', label='$\\tilde{V}=(16a)^4$')
+ax1.errorbar(x2, y2, yerr=err_y2, fmt='s', markersize=5, capsize=3, color='purple', label='$\\tilde{V}=(16a)^4$')
 
 # Customize x and y ranges
 ax1.set_xlim([-1.20, -1.00])
-ax1.set_ylim([0.0, 0.45])
+ax1.set_ylim([0.0, 0.60])
 
 
 # Create axis object for second subplot
-#ax2 = fig.add_subplot(122)
+# ax2 = fig.add_subplot(122)
 
 # Plot dataset 3 with error bars in blue
-ax2.errorbar(x3, y3, yerr=err_y3, fmt='s', markersize=5, capsize=3, color='red', label='$\\tilde{V}=(8a)^4$')
+ax2.errorbar(x3, y3, yerr=err_y3, fmt='o', markersize=5, capsize=3, color='red', label='$\\tilde{V}=(8a)^4$')
 
 # Plot dataset 4 with error bars in green
 ax2.errorbar(x4, y4, yerr=err_y4, fmt='s', markersize=5, capsize=3, color='purple', label='$\\tilde{V}=(16a)^4$')
 
 # Add horizontal blue line at y=0
-#ax2.axhline(y=0.365243, color='blue', linestyle='-')
+# ax2.axhline(y=0.365243, color='blue', linestyle='-')
 
 # Customize x and y ranges
 ax2.set_xlim([-1.02, -0.90])
@@ -76,6 +93,3 @@ ax2.legend(loc='best')
 
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/susceptibilities.pdf', dpi=300, bbox_inches='tight')
-
-# Display the plot
-plt.show()

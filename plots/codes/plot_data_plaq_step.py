@@ -1,13 +1,20 @@
-
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
+
+# Check if the '--dp' flag is provided
+if '--dp' in sys.argv:
+    data_path = '../../precomputed_data/initial_tests/plaquette_step.txt'
+else:
+    data_path = '../../data/initial_tests/plaquette_step.txt'
 
 # Activating text rendering by LaTeX
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('../../data/plaquette_step.txt')
+data = np.loadtxt(data_path)
 
+# Rest of the code remains the same...
 # Extract columns
 x = data[:, 0]
 y = data[:, 1]
@@ -32,8 +39,8 @@ ax.set_ylim([0.5353, 0.5367])
 
 ax.tick_params(axis='both', which='major', labelsize=9)
 
-ax.set_xlabel('$\Delta \\tau$',fontsize=9)
-ax.set_ylabel('$\langle P \\rangle $',fontsize=9)
+ax.set_xlabel('$\Delta \\tau$', fontsize=9)
+ax.set_ylabel('$\langle P \\rangle $', fontsize=9)
 
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/output.pdf', dpi=300, bbox_inches='tight')

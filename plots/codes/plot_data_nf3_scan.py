@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
 
 # Activating text rendering by LaTeX
 plt.style.use("paperdraft.mplstyle")
@@ -7,6 +8,16 @@ plt.style.use("paperdraft.mplstyle")
 # Define a list of colors for each file
 colors = [(0.8, 0.6, 0.8), (0.9, 0.5, 0.5), (0.5, 0.7, 0.9), (0.9, 0.7, 0.5), 
           (0.5, 0.5, 0.5), (0.3, 0.3, 0.3), (0.7, 0.6, 0.4), (0.3, 0.2, 0.1)]
+
+# Check if flag '--dp' is present
+use_dp = False
+if "--dp" in sys.argv:
+    use_dp = True
+
+# Define the base path depending on the flag
+base_path = "../../data/Nf3_data/"
+if use_dp:
+    base_path = "../../precomputed_data/Nf3_data/"
 
 
 # Create a figure and axis object
@@ -17,9 +28,11 @@ betas = [5.8, 6.0, 6.2, 6.4, 6.5, 6.6, 6.7, 6.8]
 
 # Loop through each file
 for i in range(8):
-    # Read data from input file
-    data = np.loadtxt(f'../../data/bulktrans_nf3_sp4_2AS_{i+1}.dat')  # assuming files are named as bulktrans_sp4_2AS_b56_1.dat, bulktrans_sp4_2AS_b56_2.dat, etc.
+    # Construct the path based on the flag
+    data_path = f"{base_path}bulktrans_nf3_sp4_2AS_{i+1}.dat"
 
+    # Read data from input file
+    data = np.loadtxt(data_path)
     # Extract columns
     x = data[:, 0]
     y = data[:, 1]
@@ -45,7 +58,3 @@ legend.get_title().set_fontsize('10')
 
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/bulktrans_nf3_2AS_all.pdf', dpi=300, bbox_inches='tight')
-
-# Display the plot
-plt.show()
-

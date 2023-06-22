@@ -17,9 +17,9 @@ def create_spacings_file(input_file):
                 pass
 
 def merge_spacings_files(directory):
-    output_file = os.path.join(directory, '../../data/2as_spacings_density.txt')
+    output_file = os.path.join(directory, '../../data/eigenvalues/2as_spacings_density.txt')
     with open(output_file, 'w') as f_out:
-    	new_dir = output_file = os.path.join(directory, '../../data')
+    	new_dir = output_file = os.path.join(directory, '../../data/eigenvalues')
     	for filename in os.listdir(new_dir):
             if filename.endswith('_spacings.txt'):
                 filepath = os.path.join(new_dir, filename)

@@ -6,8 +6,8 @@
 ############################################################################
 
 # create an array to store the names of the files starting with "eigenvalues_"
-files=($(ls ../../data/eigenvalues_*))
-directory='../../data/'
+files=($(ls ../../data/eigenvalues/eigenvalues_*))
+directory='../../data/eigenvalues/'
 
 modified_files=()
 
@@ -40,6 +40,6 @@ python3 assign_positions.py "${files[@]}"
 python3 find_spacings.py "${modified_files_2[@]}"
 python3 find_spacings_2.py "${modified_files_2[@]}"
 
-rm ../../data/eigenvalues_*
-rm ../../data/spacings_density.txt
-rm ../../data/unfolded_dist.txt
+rm ../../data/eigenvalues/eigenvalues_*
+rm ../../data/eigenvalues/spacings_density.txt
+rm ../../data/eigenvalues/unfolded_dist.txt

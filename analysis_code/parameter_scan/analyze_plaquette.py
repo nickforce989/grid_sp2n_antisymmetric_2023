@@ -15,12 +15,18 @@ flavours = int(sys.argv[-1])
 # Initialize a dictionary to store the results
 results = {}
 
+
+merged_lines = []
+
 # Iterate over each beta value
 for n, beta in enumerate(beta_values, start=1):
     # Initialize a dictionary to store the results for this beta value
     results = {}
-    # Get list of all files with names matching the pattern 'hmc_nf{flavours}_*_b{int(beta*10)}-*.out' in the same directory
-    pattern = f"../../raw_data/hmc_nf{flavours}_*_b{int(beta*10)}-*.out"
+    # Get list of all files with names matching the pattern 'hmc_nf{flavours}_*b{int(beta*10)}*.out' in the same directory
+    if flavours != 0:
+        pattern = f"../../raw_data/Nf{flavours}_data/hmc_nf{flavours}_*b{int(beta*10)}*.out"
+    else:
+        pattern = f"../../raw_data/Nf{flavours}_data/hmc_nf{flavours}_*b{int(beta*10)}.out"
     files = glob.glob(pattern)
     files = [f for f in files if os.path.isfile(f)]
 
@@ -32,10 +38,10 @@ for n, beta in enumerate(beta_values, start=1):
     # Iterate over each file
     for filename in files:
         # Use grep command to select relevant lines and write to temporary file
-        os.system(f"grep 'Plaquette' {filename} | awk '{{print $NF}}' > ../../data/plaquette_lines.txt")
+        os.system(f"grep 'Plaquette' {filename} | awk '{{print $NF}}' > ../../data/Nf{flavours}_data/plaquette_lines.txt")
 
         # Read in the temporary file
-        with open("../../data/plaquette_lines.txt", "r") as f:
+        with open(f"../../data/Nf{flavours}_data/plaquette_lines.txt", "r") as f:
             lines = f.readlines()
 
         # Extract plaquette values and their line numbers
@@ -64,23 +70,46 @@ for n, beta in enumerate(beta_values, start=1):
         bin_avg = np.mean(bin_avgs)
         bin_err = np.sqrt((num_bins - 1) / num_bins * np.sum((bin_avgs - bin_avg) ** 2))
 
-        # Get integer value from filename using bash commands
-        integer_val = os.popen(f"basename {filename} | sed 's/.*-am\\([0-9]\\+\\)\\.out/\\1/'").read().strip()
-        if not integer_val.isdigit():
-            print(f"Error: No integer value found in filename {filename}")
-            continue
 
-        # Insert decimal point after first digit
-        float_val = integer_val[0] + "." + integer_val[1:]
+        if flavours != 0:
+            # Get integer value from filename using bash commands
+            integer_val = os.popen(f"basename {filename} | sed 's/.*_am-\\([0-9]\\+\\)\\.out/\\1/'").read().strip()
+            if not integer_val.isdigit():
+                print(f"Error: No integer value found in filename {filename}")
+                continue
+
+            # Insert decimal point after first digit
+            float_val = integer_val[0] + "." + integer_val[1:]
 
         # Add results to the dictionary
-        results[float_val] = (bin_avg, bin_err)
+        if flavours == 0:
+            results[beta] = (bin_avg, bin_err)
+        else:
+            results[float_val] = (bin_avg, bin_err)
 
         # Delete the temporary file
-        os.remove("../../data/plaquette_lines.txt")
+        os.remove(f"../../data/Nf{flavours}_data/plaquette_lines.txt")
 
     # Write the results to the output file in ascending order based on the first column
-    with open(f"../../data/bulktrans_nf{flavours}_sp4_2AS_{n}.dat", "w") as f:
-        for key in sorted(results.keys(), reverse=True):
-            bin_avg, bin_err = results[key]
-            f.write(f"-{key} {bin_avg} 0.0 {bin_err}\n")
+    with open(f"../../data/Nf{flavours}_data/bulktrans_nf{flavours}_sp4_2AS_{n}.dat", "w") as f:
+        if flavours != 0:
+            for key in sorted(results.keys(), reverse=True):
+                bin_avg, bin_err = results[key]
+                f.write(f"-{key} {bin_avg} 0.0 {bin_err}\n")
+        else:
+            for key in sorted(results.keys(), reverse=True):
+                merged_lines.append(f"{beta} {bin_avg} 0.0 {bin_err}\n")
+                
+if flavours == 0:
+    # Write the merged lines to the output file in ascending order based on the first column
+    file_path = "../../data/Nf0_data/bulktrans_nf0_sp4_2AS_1.dat"
+    with open(file_path, "w") as f:
+        sorted_lines = sorted(merged_lines, key=lambda x: float(x.split()[0]))
+        f.writelines(sorted_lines)
+        # Delete all files matching the pattern 'bulktrans_nf0_sp4_2AS_N.dat' except for 'bulktrans_nf0_sp4_2AS_1.dat'
+    file_pattern = "../../data/Nf0_data/bulktrans_nf0_sp4_2AS_*.dat"
+    files_to_delete = glob.glob(file_pattern)
+    files_to_delete = [f for f in files_to_delete if os.path.isfile(f) and f != file_path]
+
+    for file_to_delete in files_to_delete:
+        os.remove(file_to_delete)    

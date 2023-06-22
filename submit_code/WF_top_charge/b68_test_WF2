@@ -26,12 +26,12 @@ export UCX_IB_GPU_DIRECT_RDMA=yes
 export UCX_MEMTYPE_CACHE=n
 
 
-mpirun -np 1 -x LRANK=0 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_WilsonFlow --confstart 951 --confend 1150 --confsave /scratch/s.2227764/WF_confs_vol12_final > ./hmc_${SLURM_JOB_ID}_vol12_b68-am08_951-1150.out &
+mpirun -np 1 -x LRANK=0 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./../../../Test_WilsonFlow --confstart 951 --confend 1150 --confsave ../../../WF_confs_vol12_final > ./../../raw_data/WF_TopCharge/hmc_${SLURM_JOB_ID}_vol12_b68-am08_951-1150.out &
 
-mpirun -np 1 -x LRANK=1 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_WilsonFlow --confstart 1151 --confend 1350 --confsave /scratch/s.2227764/WF_confs_vol12_final > ./hmc_${SLURM_JOB_ID}_vol12_b68-am08_1151-1350.out &
+mpirun -np 1 -x LRANK=1 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./../../../Test_WilsonFlow --confstart 1151 --confend 1350 --confsave ../../../WF_confs_vol12_final > ./../../raw_data/WF_TopCharge/hmc_${SLURM_JOB_ID}_vol12_b68-am08_1151-1350.out &
 
-mpirun -np 1 -x LRANK=2 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_WilsonFlow --confstart 1351 --confend 1550 --confsave /scratch/s.2227764/WF_confs_vol12_final > ./hmc_${SLURM_JOB_ID}_vol12_b68-am08_1351-1550.out &
+mpirun -np 1 -x LRANK=2 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./../../../Test_WilsonFlow --confstart 1351 --confend 1550 --confsave ../../../WF_confs_vol12_final > ./../../raw_data/WF_TopCharge/hmc_${SLURM_JOB_ID}_vol12_b68-am08_1351-1550.out &
 
-mpirun -np 1 -x LRANK=3 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./Test_WilsonFlow --confstart 1551 --confend 1750 --confsave /scratch/s.2227764/WF_confs_vol12_final > ./hmc_${SLURM_JOB_ID}_vol12_b68-am08_1551-1750.out &
+mpirun -np 1 -x LRANK=3 -x LD_LIBRARY_PATH  --bind-to none ./wrappersimple.sh ./../../../Test_WilsonFlow --confstart 1551 --confend 1750 --confsave ../../../WF_confs_vol12_final > ./../../raw_data/WF_TopCharge/hmc_${SLURM_JOB_ID}_vol12_b68-am08_1551-1750.out &
 
 wait

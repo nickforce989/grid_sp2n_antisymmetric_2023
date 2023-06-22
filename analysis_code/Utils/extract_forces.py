@@ -44,7 +44,7 @@ input_file = sys.argv[1]
 input_file_path = f'../../raw_data/{input_file}'
 
 search_pattern_fermionic = r'Hirep Force average:'
-output_file_fermionic = '../../data/fermionic_forces.out'
+output_file_fermionic = '../../data2/tmp_fermionic_forces.out'
 
 # Check if the output file already exists and replace it
 if os.path.isfile(output_file_fermionic):
@@ -53,7 +53,7 @@ if os.path.isfile(output_file_fermionic):
 extract_last_float(input_file_path, search_pattern_fermionic, output_file_fermionic)
 
 search_pattern_gauge = r'\[1\]\[0\] Force average:'
-output_file_gauge = '../../data/gauge_forces.out'
+output_file_gauge = '../../data2/tmp_gauge_forces.out'
 
 # Check if the output file already exists and replace it
 if os.path.isfile(output_file_gauge):

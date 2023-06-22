@@ -3,6 +3,7 @@ from scipy.optimize import curve_fit
 import matplotlib.pyplot as plt
 import numpy as np
 from math import gamma
+import argparse
 
 # Activating text rendering by LaTeX
 plt.style.use("paperdraft.mplstyle")
@@ -21,14 +22,22 @@ def fit_func3(x, N, c):
     return N * x**1 * np.exp(-c*x**2)
 
 
+# Parse the command line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument("--dp", action="store_true", help="Use precomputed data path")
+args = parser.parse_args()
+
+# Define the data file paths based on the presence of the flag
+data_path_1 = "../../precomputed_data/eigenvalues/spacings_density_2.txt" if args.dp else "../../data/eigenvalues/spacings_density_2.txt"
+data_path_2 = "../../precomputed_data/eigenvalues/spacings_density_2as.txt" if args.dp else "../../data/eigenvalues/spacings_density_2as.txt"
+
 # Read the first file and plot it in the corresponding axis
-file = '../../data/spacings_density_2.txt'
-with open(file, 'r') as f:
+with open(data_path_1, 'r') as f:
     data = [float(line.strip()) for line in f]
 # Plot the data in the corresponding axis
 col = 0
 ax = axs[col]
-Nbins = 71
+Nbins = 191
 y, x, _ = ax.hist(data, Nbins, color='blue', alpha=.3, density=True, edgecolor="black")
 erry = np.sqrt(y)
 x = (x[1:] + x[:-1]) / 2  # for len(x)==len(y)
@@ -59,13 +68,12 @@ ax.plot(x, fit_func3(x, N3, c3), 'm-.', linewidth=2, label='$SU(2N_{\\rm as})/Sp
 
 
 # Read the second file and plot it in the corresponding axis
-file = '../../data/spacings_density_2as.txt'
-with open(file, 'r') as f:
+with open(data_path_2, 'r') as f:
     data = [float(line.strip()) for line in f]
 # Plot the data in the corresponding axis
 col = 1
 ax = axs[col]
-Nbins = 73
+Nbins = 103
 y, x, _ = ax.hist(data, Nbins, color='blue', alpha=.3, density=True, edgecolor="black")
 erry = np.sqrt(y)
 x = (x[1:] + x[:-1]) / 2  # for len(x)==len(y)

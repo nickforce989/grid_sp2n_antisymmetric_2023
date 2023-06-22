@@ -1,5 +1,12 @@
+import argparse
 import matplotlib.pyplot as plt
 import numpy as np
+
+# Parse command line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--dp1', action='store_true', help='Toggle dp1 file path')
+parser.add_argument('--dp2', action='store_true', help='Toggle dp2 file path')
+args = parser.parse_args()
 
 # Activating text rendering by LaTeX
 plt.style.use("paperdraft.mplstyle")
@@ -16,9 +23,11 @@ axs = axs.flatten()
 
 # Create 6 different plots
 for i in range(6):
-    # Read data from input files
-    data1 = np.loadtxt(f'../../data/bulktrans_sp4_2AS_{5-i+1}.dat')
-    data2 = np.loadtxt(f'../../data/bulktrans_sp4_2AS_hot_{5-i+1}.dat')
+    # Construct file paths based on the dp flags
+    dp1 = '../../precomputed_data/Nf4_data/bulktrans_nf4_sp4_2AS_' if args.dp1 else '../../data/Nf4_data/bulktrans_nf4_sp4_2AS_'
+    dp2 = '../../precomputed_data/Nf4_hot/bulktrans_sp4_2AS_hot_' if args.dp2 else '../../data/Nf4_hot/bulktrans_sp4_2AS_hot_'
+    data1 = np.loadtxt(f'{dp1}{5-i+1}.dat')
+    data2 = np.loadtxt(f'{dp2}{5-i+1}.dat')
 
     # Extract columns
     x1 = data1[:, 0]
@@ -31,9 +40,6 @@ for i in range(6):
     # Plot data2 with lines connecting points and using red color
     axs[i].plot(x2, y2, color='red', linestyle='-', linewidth=1.5, marker='o', markersize=3, label=f'$\\beta = {betas[i]}$ (Hot)')
 
-    # Add horizontal red line at y=0
-#   axs[i].axhline(y=0.535717, color='red', linestyle='-')
-
     # Remove x ticks on the bottom plots
     if i == 4 or i == 5:
         axs[i].set_xticks([-1.5, -1.0, -0.5, 0.0])
@@ -41,11 +47,9 @@ for i in range(6):
     else:
         axs[i].tick_params(axis='x', labelbottom=False)
 
-
     # Customize x and y ranges
     axs[i].set_xlim([-1.5, 0.05])
     axs[i].set_ylim([0.345, 0.74])
-
     axs[i].tick_params(axis='both', which='major', labelsize=14)
 
     if i == 0 or i == 2 or i == 4:
@@ -56,12 +60,6 @@ for i in range(6):
         # Remove y ticks on all other plots
         axs[i].tick_params(axis='y', labelleft=False)
         axs[i].set_xlabel('')
-        
-
-    
-
-#    ax.set_xlabel('$am^{\\rm as}_0$', fontsize=11)
- #   ax.set_ylabel('$\\langle P \\rangle $', fontsize=11)
 
 # Add shared x and y axis labels to the figure
 fig.text(0.5, -0.0115, '$am^{\\rm as}_0$', ha='center', fontsize=14)
@@ -71,5 +69,4 @@ fig.text(-0.02, 0.5, '$\\langle P \\rangle $', va='center', rotation='vertical',
 fig.tight_layout()
 
 # Save the figure in PDF format with dpi=300 and specified size
-plt.savefig('../figures/bulktrans_plots.pdf', dpi=300, bbox_inches='tight')    
-    
+plt.savefig('../figures/bulktrans_plots.pdf', dpi=300, bbox_inches='tight')

@@ -1,9 +1,9 @@
 import re
 import numpy as np
 
-file_paths = ['../../raw_data/hmc_7534350-step14.out', '../../raw_data/hmc_7534348-step16.out', '../../raw_data/hmc_7534347-step18.out', '../../raw_data/hmc_7534346-step22.out', '../../raw_data/hmc_7534360-step26.out']  # Replace with your input file paths
+file_paths = ['../../raw_data/initial_tests/hmc_initialtests-step14.out', '../../raw_data/initial_tests/hmc_initialtests-step16.out', '../../raw_data/initial_tests/hmc_initialtests-step18.out', '../../raw_data/initial_tests/hmc_initialtests-step22.out', '../../raw_data/initial_tests/hmc_initialtests-step26.out']  # Replace with your input file paths
 
-output_file = '../../data/pacc_steps.txt'
+output_file = '../../data/initial_tests/pacc_steps.txt'
 block_fraction = 0.1
 num_bootstrap_samples = 1000
 

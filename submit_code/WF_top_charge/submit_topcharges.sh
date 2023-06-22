@@ -1,13 +1,14 @@
+#!/bin/bash
+
 #############################################################################################
 # Submit jobs for topological charges for b = 6.8, 6.9.                                     #
 #############################################################################################
 
-#!/bin/bash
 
-module load compiler/gnu/10/2.0
-module load CUDA/11.7
+module purge
+module load cuda/11.4.1  openmpi/4.1.1-cuda11.4.1  ucx/1.12.0-cuda11.4.1
 
-export LD_LIBRARY_PATH=/home/s.2227764/sympl_grid_modified/prefix/lib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=/home/dp208/dp208/dc-forz1/grid/prefix/lib:/mnt/lustre/tursafs1/apps/basestack/cuda-11.4.1/ucx/1.12.0-cuda11.4.1/lib:/mnt/lustre/tursafs1/apps/basestack/cuda-11.4.1/openmpi/4.1.1-cuda11.4.1/lib:/mnt/lustre/tursafs1/apps/cuda/11.4.1/lib64/
 
 
 sbatch b69_test_WF1

@@ -1,13 +1,24 @@
-
 import matplotlib.pyplot as plt
 import numpy as np
+import argparse
 
 # Activating text rendering by LaTeX
 plt.style.use("paperdraft.mplstyle")
 
-# Read data from input file
-data = np.loadtxt('../../data/compatibilita_rhmc.txt')
+# Parse command-line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--dp', action='store_true', help='Use alternative data file path')
+args = parser.parse_args()
 
+# Set data file path based on the flag
+data_file_path = '../../data/rhmc_compatibilities/compatibilita_rhmc.txt'
+if args.dp:
+    data_file_path = '../../precomputed_data/rhmc_compatibilities/compatibilita_rhmc.txt'
+
+# Read data from input file
+data = np.loadtxt(data_file_path)
+
+# Rest of the code remains the same...
 # Extract columns
 x = data[:, 0]
 y = data[:, 1]
@@ -28,15 +39,12 @@ ax.axhline(y=0.0, color='black', linestyle='-')
 
 # Customize x and y ranges
 ax.set_xlim([-1.5, 0.1])
-ax.set_ylim([-0.0035, 0.0035])
+ax.set_ylim([-0.0025, 0.0025])
 
 ax.tick_params(axis='both', which='major', labelsize=9)
 
-ax.set_xlabel('$am^{\\rm as}_0$',fontsize=9)
-ax.set_ylabel('$\langle P \\rangle_{\\rm HMC} - \langle P \\rangle_{\\rm RHMC} $',fontsize=9)
+ax.set_xlabel('$am^{\\rm as}_0$', fontsize=9)
+ax.set_ylabel('$\langle P \\rangle_{\\rm HMC} - \langle P \\rangle_{\\rm RHMC} $', fontsize=9)
 
 # Save the figure in PDF format with dpi=300 and specified size
 plt.savefig('../figures/Compatibility_rhmc.pdf', dpi=300, bbox_inches='tight')
-
-# Display the plot
-plt.show()

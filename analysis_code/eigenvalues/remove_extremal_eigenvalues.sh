@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory containing the txt files
-directory="../../data/"
+directory="../../data/eigenvalues/"
 
 # Loop through each txt file starting with 'eigenvalues'
 for file in "$directory"/eigenvalues*.txt; do

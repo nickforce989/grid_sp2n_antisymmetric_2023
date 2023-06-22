@@ -6,8 +6,8 @@ lines.markersize : 3
 lines.markeredgewidth : 0.5
 errorbar.capsize : 1.5
 axes.linewidth : 0.5
-legend.fontsize : small
+legend.fontsize : 9
 legend.handletextpad : 0.3
 legend.columnspacing : 0.5
-xtick.labelsize : 10   # set font size of x tick labels to 8
-ytick.labelsize : 10    # set font size of y tick labels to 8
+xtick.labelsize : 9   # set font size of x tick labels to 8
+ytick.labelsize : 9    # set font size of y tick labels to 8

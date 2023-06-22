@@ -1,12 +1,24 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import argparse
 from scipy.special import erfc
+
+# Parse command-line arguments
+parser = argparse.ArgumentParser()
+parser.add_argument('--dp', action='store_true', help="Use different data file path")
+args = parser.parse_args()
+
+# Set data file path based on the flag
+if args.dp:
+    data_file = '../../precomputed_data/initial_tests/pacc_steps.txt'
+else:
+    data_file = '../../data/initial_tests/pacc_steps.txt'
 
 # Activating text rendering by LaTeX
 plt.style.use("paperdraft.mplstyle")
 
 # Read data from input file
-data = np.loadtxt('../../data/pacc_steps.txt')
+data = np.loadtxt(data_file)
 
 # Extract columns
 x = data[:, 0]

@@ -53,7 +53,7 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
 
     # Process output files for pattern 1 (Clover plaq)
     for number in numbers1:
-        output_file_name = f"../../data/output_clover_{number}.txt"
+        output_file_name = f"../../data/WF/output_clover_{number}.txt"
         with open(output_file_name, "w") as output_file:
             for line in input_lines:
                 match = re.search(pattern1, line)
@@ -63,7 +63,7 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
     # Compute bootstrap errors and write to output file for pattern 1 (Clover plaq)
     with open(output_file_clover, "w") as output_file:
         for i in range(1, evolution_time + 1):
-            input_file = f"../../data/output_clover_{i}.txt"
+            input_file = f"../../data/WF/output_clover_{i}.txt"
             if os.path.isfile(input_file):
                 data = []
                 with open(input_file) as f:
@@ -83,7 +83,7 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
 
     # Process output files for pattern 2 (plaq)
     for number in numbers2:
-        output_file_name = f"../../data/output_{number}.txt"
+        output_file_name = f"../../data/WF/output_{number}.txt"
         with open(output_file_name, "w") as output_file:
             for line in input_lines:
                 match = re.search(pattern2, line)
@@ -93,7 +93,7 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
     # Compute bootstrap errors and write to output file for pattern 2 (plaq)
     with open(output_file_plaq, "w") as output_file:
         for i in range(1, evolution_time + 1):
-            input_file = f"../../data/output_{i}.txt"
+            input_file = f"../../data/WF/output_{i}.txt"
             if os.path.isfile(input_file):
                 data = []
                 with open(input_file) as f:
@@ -112,23 +112,23 @@ def process_input_files(input_file_pattern, output_file_clover, output_file_plaq
                 os.remove(input_file)
 
 # Define the input file search patterns and output file names
-directory = "../../raw_data/"
+directory = "../../raw_data/WF_TopCharge/"
 input_files = [f for f in os.listdir(directory) if f.endswith(".out") and "b69" in f] 
-output_file_name1 = "../../data/WF_b69_am-08_l8_clover.txt"
-output_file_name2 = "../../data/WF_b69_am-08_l8.txt"
+output_file_name1 = "../../data/WF/WF_b69_am-08_l8_clover.txt"
+output_file_name2 = "../../data/WF/WF_b69_am-08_l8.txt"
 
 input_files2 = [f for f in os.listdir(directory) if f.endswith(".out") and "b68" in f] 
-output_file_name3 = "../../data/WF_b68_am-08_l8_clover.txt"
-output_file_name4 = "../../data/WF_b68_am-08_l8.txt"
+output_file_name3 = "../../data/WF/WF_b68_am-08_l8_clover.txt"
+output_file_name4 = "../../data/WF/WF_b68_am-08_l8.txt"
 
 # Max Wilson Flow time
 evolution_time = 450
 
 # Process input files for b = 6.9
-process_input_files("../../raw_data/"+input_files[0], output_file_name1, output_file_name2)
+process_input_files("../../raw_data/WF_TopCharge/"+input_files[0], output_file_name1, output_file_name2)
 
 # Process input files for b = 6.8
-process_input_files("../../raw_data/"+input_files2[0], output_file_name3, output_file_name4)
+process_input_files("../../raw_data/WF_TopCharge/"+input_files2[0], output_file_name3, output_file_name4)
 
 # Create new file names with '_2' suffix
 output_file_name1_2 = output_file_name1.replace(".txt", "_2.txt")

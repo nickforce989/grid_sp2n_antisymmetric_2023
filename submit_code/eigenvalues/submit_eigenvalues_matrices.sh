@@ -7,7 +7,7 @@
 ####################################################################
 
 
-conf_dir="/scratch/s.2227764/conf_saved_eigen/"
+conf_dir="./../../conf_saved_eigen/"
 ckpoint_file="ckpoint_lat."
 
 module purge
