@@ -18,23 +18,23 @@ initial_tests_dir2="../../precomputed_data/Nf4_data/"
 cd ../analysis_code/parameter_scan
 
 if [ -z "$(ls -A $initial_tests_dir)" ]; then
-  python3 hot_analyze_plaquette.py $betas $therm_num 4
+  python hot_analyze_plaquette.py $betas $therm_num 4
 fi
 
 if [ -z "$(ls -A $initial_tests_dir2)" ]; then
-  python3 analyze_plaquette.py $betas $therm_num 4
+  python analyze_plaquette.py $betas $therm_num 4
 fi
 
 cd ../../plots/codes/
 
 if [ -z "$(ls -A $initial_tests_dir)" ] && [ -z "$(ls -A $initial_tests_dir2)" ]; then
   # Run plot stuff
-  python3 plot_hot.py
+  python plot_hot.py
 elif [ -z "$(ls -A $initial_tests_dir)" ] && [ ! -z "$(ls -A $initial_tests_dir2)" ]; then
-  python3 plot_hot.py --dp1
+  python plot_hot.py --dp1
 elif [ ! -z "$(ls -A $initial_tests_dir)" ] && [ -z "$(ls -A $initial_tests_dir2)" ]; then
-  python3 plot_hot.py --dp2
+  python plot_hot.py --dp2
 else
-  python3 plot_hot.py --dp1 --dp2
+  python plot_hot.py --dp1 --dp2
 fi
 

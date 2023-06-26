@@ -15,6 +15,20 @@ part of the plots as in the paper, and re-analyse from scratch the rest of them.
 
 ---------------------------------------------------------------------------------------------------------
 
+FIRST THINGS TO DO, IF YOU WANT TO MAKE SURE TO AVOID COMPATIBILITY PROBLEMS: 
+
+Download this code and download the data release files in ###########
+
+Then, create the conda environment in terminal with conda installed:
+
+$ conda env create -f environment.yml
+
+Once the environment is created, you can active it:
+
+$ conda activate analysis-env
+
+---------------------------------------------------------------------------------------------------------
+
 DESCRIPTION OF DIRECTORIES:
 
 There are seven main directories: 

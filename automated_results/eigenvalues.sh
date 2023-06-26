@@ -13,9 +13,9 @@ cd ../../plots/codes/
 
 if [ -z "$(ls -A $initial_tests_dir)" ]; then
   # Plotting distributions
-  python3 Dw_distributions.py
+  python Dw_distributions.py
 else
-  python3 Dw_distributions.py --dp
+  python Dw_distributions.py --dp
 fi
 
 

@@ -6,33 +6,33 @@ initial_tests_dir2="../../precomputed_data/reversibility/"
 cd ../analysis_code/initial_tests
 
 if [ -z "$(ls -A $initial_tests_dir)" ]; then
-  python3 analyse_creutz.py
-  python3 analyse_plaquette.py
-  python3 analyse_dHsteps.py
-  python3 analyse_pacc.py
+  python analyse_creutz.py
+  python analyse_plaquette.py
+  python analyse_dHsteps.py
+  python analyse_pacc.py
 fi
 
 if [ -z "$(ls -A $initial_tests_dir2)" ]; then
-  python3 analyse_rev.py
+  python analyse_rev.py
 fi
 
 cd ../../plots/codes
 
 if [ -z "$(ls -A $initial_tests_dir)" ]; then
-  python3 plot_data_creutz.py
-  python3 plot_data_plaq_step.py
-  python3 plot_data_dH_steps.py
-  python3 plot_data_pacc_steps.py
+  python plot_data_creutz.py
+  python plot_data_plaq_step.py
+  python plot_data_dH_steps.py
+  python plot_data_pacc_steps.py
 else
-  python3 plot_data_creutz.py --dp
-  python3 plot_data_plaq_step.py --dp
-  python3 plot_data_dH_steps.py --dp
-  python3 plot_data_pacc_steps.py --dp
+  python plot_data_creutz.py --dp
+  python plot_data_plaq_step.py --dp
+  python plot_data_dH_steps.py --dp
+  python plot_data_pacc_steps.py --dp
 fi
 
 if [ -z "$(ls -A $initial_tests_dir2)" ]; then
-  python3 plot_data_reversibility.py
+  python plot_data_reversibility.py
 else
-  python3 plot_data_reversibility.py --dp
+  python plot_data_reversibility.py --dp
 fi
 
