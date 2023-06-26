@@ -6,6 +6,15 @@
 # thermalisations. The last integer is the number of 2AS Dirac fermions.                 #
 # #######################################################################################
 
+
+# Function to check if a directory is empty except for hidden files
+is_dir_empty_except_hidden() {
+  local dir=$1
+  local files_count=$(find "$dir" -maxdepth 1 -type f ! -iname ".*" | wc -l)
+  [[ $files_count -eq 0 ]]
+}
+
+
 # Get beta values from command line arguments
 last_arg="${@: -1}"
 if [ "$last_arg" = "0" ]; then
@@ -23,13 +32,13 @@ initial_tests_dir="../../precomputed_data/Nf${flavours}_data/"
 
 cd ../analysis_code/parameter_scan
 
-if [ -z "$(find "$initial_tests_dir" -mindepth 1 -type f -not -path '*/\.*')" ]; then
+if is_dir_empty_except_hidden "$initial_tests_dir"; then
   python analyze_plaquette.py $betas $therm_num $flavours
 fi
 
 cd ../../plots/codes/
 
-if [ -z "$(find "$initial_tests_dir" -mindepth 1 -type f -not -path '*/\.*')" ]; then
+if is_dir_empty_except_hidden "$initial_tests_dir"; then
   # Run plot stuff
   python plot_data_nf${flavours}_scan.py $betas
 else
