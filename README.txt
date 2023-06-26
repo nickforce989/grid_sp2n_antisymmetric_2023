@@ -161,7 +161,10 @@ There will be a directory called 'automated_results/':
    Nk_data' filled to run, with 0 <= k <= 8. In case that the 'precomputed_data/' subdirectory will be
    filled, the analysis will be skipped and we will do data processing described in the
    point 1.b).
-  
+   
+   USAGE: 'bash parameter_scan.sh <beta_values> <thermalisation_number> <number_of_2AS_flavours>'
+   where <beta_values> e.g. could be '6.4 6.7 6.5 7.0 7.1'.
+   
   
 - 'hot_parameter_scan.sh' will allow to process the data for fig. 12. 
    This will need to have either 'raw_data/Nf4_hot' and 'raw_data/Nf4_data filled or 
