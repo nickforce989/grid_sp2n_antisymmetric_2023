@@ -23,13 +23,13 @@ initial_tests_dir="../../precomputed_data/Nf${flavours}_data/"
 
 cd ../analysis_code/parameter_scan
 
-if [ -z "$(ls -A $initial_tests_dir)" ]; then
+if [ -z "$(find "$initial_tests_dir" -mindepth 1 -type f -not -path '*/\.*')" ]; then
   python analyze_plaquette.py $betas $therm_num $flavours
 fi
 
 cd ../../plots/codes/
 
-if [ -z "$(ls -A $initial_tests_dir)" ]; then
+if [ -z "$(find "$initial_tests_dir" -mindepth 1 -type f -not -path '*/\.*')" ]; then
   # Run plot stuff
   python plot_data_nf${flavours}_scan.py $betas
 else

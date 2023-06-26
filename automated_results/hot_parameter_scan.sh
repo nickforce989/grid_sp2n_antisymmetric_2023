@@ -17,24 +17,30 @@ initial_tests_dir2="../../precomputed_data/Nf4_data/"
 
 cd ../analysis_code/parameter_scan
 
-if [ -z "$(ls -A $initial_tests_dir)" ]; then
+# Function to check if a directory is empty except for hidden files
+is_dir_empty_except_hidden() {
+  local dir=$1
+  local files_count=$(find "$dir" -maxdepth 1 -type f ! -iname ".*" | wc -l)
+  [[ $files_count -eq 0 ]]
+}
+
+if is_dir_empty_except_hidden "$initial_tests_dir"; then
   python hot_analyze_plaquette.py $betas $therm_num 4
 fi
 
-if [ -z "$(ls -A $initial_tests_dir2)" ]; then
+if is_dir_empty_except_hidden "$initial_tests_dir2"; then
   python analyze_plaquette.py $betas $therm_num 4
 fi
 
 cd ../../plots/codes/
 
-if [ -z "$(ls -A $initial_tests_dir)" ] && [ -z "$(ls -A $initial_tests_dir2)" ]; then
+if is_dir_empty_except_hidden "$initial_tests_dir" && is_dir_empty_except_hidden "$initial_tests_dir2"; then
   # Run plot stuff
   python plot_hot.py
-elif [ -z "$(ls -A $initial_tests_dir)" ] && [ ! -z "$(ls -A $initial_tests_dir2)" ]; then
+elif is_dir_empty_except_hidden "$initial_tests_dir" && ! is_dir_empty_except_hidden "$initial_tests_dir2"; then
   python plot_hot.py --dp1
-elif [ ! -z "$(ls -A $initial_tests_dir)" ] && [ -z "$(ls -A $initial_tests_dir2)" ]; then
+elif ! is_dir_empty_except_hidden "$initial_tests_dir" && is_dir_empty_except_hidden "$initial_tests_dir2"; then
   python plot_hot.py --dp2
 else
   python plot_hot.py --dp1 --dp2
 fi
-

@@ -4,7 +4,7 @@ initial_tests_dir="../../precomputed_data/TopCharge/"
 
 cd ../analysis_code/top_charge/
 
-if [ -z "$(ls -A $initial_tests_dir)" ]; then
+if [ -z "$(find "$initial_tests_dir" -mindepth 1 -type f -not -path '*/\.*')" ]; then
   python top_charges.py
 fi
 
@@ -12,7 +12,7 @@ fi
 cd ../../plots/codes/
 
 
-if [ -z "$(ls -A $initial_tests_dir)" ]; then
+if [ -z "$(find "$initial_tests_dir" -mindepth 1 -type f -not -path '*/\.*')" ]; then
   python plot_topcharge_b68.py
   python plot_topcharge_b69.py
 else

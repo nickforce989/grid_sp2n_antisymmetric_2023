@@ -5,20 +5,20 @@ initial_tests_dir2="../../precomputed_data/reversibility/"
 
 cd ../analysis_code/initial_tests
 
-if [ -z "$(ls -A $initial_tests_dir)" ]; then
+if [ -z "$(find "$initial_tests_dir" -mindepth 1 -type f -not -path '*/\.*')" ]; then
   python analyse_creutz.py
   python analyse_plaquette.py
   python analyse_dHsteps.py
   python analyse_pacc.py
 fi
 
-if [ -z "$(ls -A $initial_tests_dir2)" ]; then
+if [ -z "$(find "$initial_tests_dir2" -mindepth 1 -type f -not -path '*/\.*')" ]; then
   python analyse_rev.py
 fi
 
 cd ../../plots/codes
 
-if [ -z "$(ls -A $initial_tests_dir)" ]; then
+if [ -z "$(find "$initial_tests_dir" -mindepth 1 -type f -not -path '*/\.*')" ]; then
   python plot_data_creutz.py
   python plot_data_plaq_step.py
   python plot_data_dH_steps.py
@@ -30,7 +30,7 @@ else
   python plot_data_pacc_steps.py --dp
 fi
 
-if [ -z "$(ls -A $initial_tests_dir2)" ]; then
+if [ -z "$(find "$initial_tests_dir2" -mindepth 1 -type f -not -path '*/\.*')" ]; then
   python plot_data_reversibility.py
 else
   python plot_data_reversibility.py --dp
