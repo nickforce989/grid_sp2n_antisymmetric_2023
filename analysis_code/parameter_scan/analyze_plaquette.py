@@ -30,10 +30,6 @@ for n, beta in enumerate(beta_values, start=1):
     files = glob.glob(pattern)
     files = [f for f in files if os.path.isfile(f)]
 
-    # Check if any files were found
-    if not files:
-        print(f"No files found for beta = {beta} and flavours = {flavours}")
-        continue
 
     # Iterate over each file
     for filename in files:
