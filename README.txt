@@ -73,18 +73,21 @@ LEVELS OF AUTOMATION:
 
 The procedure is automatic at three levels:
 
- - Submission: each directory in 'analysis_code/' has a code that will generate the raw data and put them
-   in the 'raw_data/' directory.
+ - Submission: each directory in 'submit_code/' has a code that will generate the raw data and put them
+   in the 'raw_data/' directory. This include the submissions that are taking quite a long time
+   to be submitted manually.
    
- - Analysis: the same directory will contain a code that if ran will generate from the raw data contained
-   in 'raw_data/' the analysed data, and will put them in 'data/'.
+ - Analysis: the directory 'analysis_code/' will contain a code that if ran will generate from the raw data
+   contained in 'raw_data/' the analysed data, and will put them in 'data/'.
    
  - Plot: the directory 'plots/codes/' contains codes that if ran, they will use the data in 'data' (in case
    that the correspondent subdirectory of 'precomputed_data' will be empty) and generate the plots exactly 
    as they are shown in the paper. The results will be shown in 'plots/figures/'.
    
-Anyways, the analysis+plot can made in one go. Below are the istructions for making everything in one go
-and separating the two steps.
+   
+The analysis+plot can made in one go. Below are the istructions for making these two passages in one go.
+Also the simple plot from preanalysed data can be done automatically.
+Both of these things can be done using the 'automated_results/' directory, as explained below.
 
 -------------------------------------------------------------------------------------------------------
 
