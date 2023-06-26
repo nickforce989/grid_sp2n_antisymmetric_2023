@@ -95,7 +95,7 @@ for n, beta in enumerate(beta_values, start=1):
         else:
             for key in sorted(results.keys(), reverse=True):
                 merged_lines.append(f"{beta} {bin_avg} 0.0 {bin_err}\n")
-                
+               
 if flavours == 0:
     # Write the merged lines to the output file in ascending order based on the first column
     file_path = "../../data/Nf0_data/bulktrans_nf0_sp4_2AS_1.dat"
@@ -109,3 +109,12 @@ if flavours == 0:
 
     for file_to_delete in files_to_delete:
         os.remove(file_to_delete)    
+       
+       
+# Delete all files matching the pattern 'bulktrans_nf{flavours}_sp4_2AS_{n}.dat' that are empty
+file_pattern = f"../../data/Nf{flavours}_data/bulktrans_nf{flavours}_sp4_2AS_*.dat"
+files_to_delete = glob.glob(file_pattern)
+files_to_delete = [f for f in files_to_delete if os.path.isfile(f) and os.stat(f).st_size == 0]
+
+for file_to_delete in files_to_delete:
+    os.remove(file_to_delete)
