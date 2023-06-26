@@ -50,12 +50,12 @@ done
 
 for file in "${files[@]}"
 do
-    python3 even_lines.py "$file"
+    python even_lines.py "$file"
 done
-python3 merge_and_sort.py "${modified_files[@]}"
-python3 assign_positions.py "${modified_files[@]}"
-python3 2as_find_spacings.py "${modified_files_2[@]}"
-python3 2as_find_spacings_2.py "${modified_files_2[@]}"
+python merge_and_sort.py "${modified_files[@]}"
+python assign_positions.py "${modified_files[@]}"
+python 2as_find_spacings.py "${modified_files_2[@]}"
+python 2as_find_spacings_2.py "${modified_files_2[@]}"
 
 rm ../../data/eigenvalues/2as_*
 rm ../../data/eigenvalues/unfolded_dist.txt

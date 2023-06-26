@@ -35,10 +35,10 @@ for file in "${modified_files_2[@]}"; do
 done
 
 bash remove_extremal_eigenvalues.sh
-python3 merge_and_sort.py "${files[@]}"
-python3 assign_positions.py "${files[@]}"
-python3 find_spacings.py "${modified_files_2[@]}"
-python3 find_spacings_2.py "${modified_files_2[@]}"
+python merge_and_sort.py "${files[@]}"
+python assign_positions.py "${files[@]}"
+python find_spacings.py "${modified_files_2[@]}"
+python find_spacings_2.py "${modified_files_2[@]}"
 
 rm ../../data/eigenvalues/eigenvalues_*
 rm ../../data/eigenvalues/spacings_density.txt
