@@ -262,6 +262,6 @@ Here we report a list of picture number and code used to plot them in 'plots/cod
 -----------------------------------------------------------------------------------------------------
 
 All the subdirectories have very intuitive names, and their names coincide with the names of the directories
-uploaded in ##########, in order to avoid any confusion. You just need to copy and paste the content of the 
-right directory either in the subdirectories of 'raw_data/' (if you are starting from raw data) or 'precomputed
-_data/' (if you just want to plot data).
+uploaded in doi:10.5281/zenodo.8136452, in order to avoid any confusion. You just need to copy and paste the 
+content of the right directory either in the subdirectories of 'raw_data/' (if you are starting from raw data) 
+or 'precomputed_data/' (if you just want to plot data).
