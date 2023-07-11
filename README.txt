@@ -1,17 +1,46 @@
+
 This repository is meant to be used for the analysis of data of Sp(4) gauge theory with fermions
 in the paper 'Symplectic lattice gauge theories on Grid: approaching the conformal window' 
 (arXiv:2306.11649).
 
 ---------------------------------------------------------------------------------------------------------
 
-GENERAL DESCRIPTION AND USAGE:
+GRID VERSION USED:
+
+
+
+---------------------------------------------------------------------------------------------------------
+
+GENERAL DESCRIPTION:
 
 This code is working in two ways: it either makes the analysis from raw output data given by GRID, and then
 plots them, or it simply plots the pre-analysed data. The code automatically detects if precomputed data
 will be put in the suitable directory, and will plot them. Otherwise, if those directories will be empty, 
 it will look for raw_data in the proper directory, and will analyse them from scratch and them plot the 
-results of the analysis. You can also fill part of the subdirectories within 'precomputed_data' and plot
+results of the analysis. You can also fill part of the subdirectories within 'precomputed_data/' and plot
 part of the plots as in the paper, and re-analyse from scratch the rest of them.
+
+
+The procedure is automatic at two levels:
+
+   
+ - Analysis: the directory 'analysis_code/' will contain a code that if ran will generate from the raw data
+   contained in 'raw_data/' the analysed data, and will put them in 'data/'.
+   
+ - Plot: the directory 'plots/codes/' contains codes that if ran, they will use the data in 'data' (in case
+   that the correspondent subdirectory of 'precomputed_data' will be empty) and generate the plots exactly 
+   as they are shown in the paper. The results will be shown in 'plots/figures/'.
+   
+   
+The analysis+plot can be made in one go. Below are the istructions for making these two passages in one go.
+Also the simple plot from pre-analysed data can be done automatically.
+Both of these things can be done using the 'automated_results/' directory, as will be explained below.
+
+
+
+As a utility, each directory in 'submit_code/' has a code that will generate the raw data and put them
+in the 'raw_data/' directory. This include the submissions that take quite a long time
+to be submitted manually.
 
 ---------------------------------------------------------------------------------------------------------
 
@@ -29,65 +58,52 @@ $ conda activate analysis-env
 
 ---------------------------------------------------------------------------------------------------------
 
+MINIMAL REQUIREMENTS:
+
+The minimal requirements to run the two are having a working version of LateX installed for producing the
+correct labels in plots and Mathematica for producing Fig. 1. 
+
+---------------------------------------------------------------------------------------------------------
+
 DESCRIPTION OF DIRECTORIES:
 
 There are seven main directories: 
 
-1) The first one is called 'submit_code' and it is the code used for submission of jobs on GRID.
+1) The first one is called 'submit_code/' and it is the code used for submission of jobs on GRID.
 This can be used as a useful tool to submit some of the jobs that would take quite a long time to
-submit manually. These were thought be used on Tursa Dirac. Some old codes in 'submit_code/old_codes/'
+submit manually. These were thought to be used on Tursa Dirac. Some old codes in 'submit_code/old_codes/'
 were though to be used on SuperComputing Wales SUNBIRD.
 
 2) The second one is called 'analysis_code/', which contains all the codes that has been used
 to analyse data presented in the paper (arXiv:2306.11649). 
 
 3) The third directory is called 'plots/' and contains the codes (in particular, in the subdirectory 
-'plots/codes/') in the that plot the data as they are shown in the paper. This directory contains also
-old codes used to develop the current ones. Also 'plots/figures/' will contain the output figures, 
-obtained from running the code.
+'plots/codes/') that plot the data as they are shown in the paper. This directory ('plots/old_codes/')
+contains also old codes used to develop the current ones. Also 'plots/figures/' will contain the output
+figures, obtained from running the code.
 
 4) The fourth directory, called 'data/' contains the data that will be the outcome if the user will run the 
 code, having the purpose to redo the analysis+plotting procedure from raw_data for all or part of the data.
 
-5) The fifth directory is called 'raw_data/'. Here the user is expected to put the raw data, in case they want
-to make the analysis and plotting of data. The raw data will be analysed through the codes in 'analysis_
-code/' and the deriving data will be put in 'data/'. These will be plotted through the codes in 'plots/' and 
-the resulting figures will be saved in 'plots/figures/'. The raw data used in the analysis of (arXiv:2306.11649)
+5) The fifth directory is called 'raw_data/'. Here the user is expected to put the raw data, in case they
+want to make the analysis from scratch and plot the data. The workflow for this will be: using the scripts
+in the directory of point 6), the raw data will be analysed (using the codes in 'analysis_code/') and the 
+resulting data will be put in 'data/'. These will be plotted (using the codes in 'plots/codes/') and the 
+resulting figures will be saved in 'plots/figures/'. The raw data used in the analysis of (arXiv:2306.11649)
 can be downloaded from ######.
 
 6) The sixth directory is called 'automated_results/'. This contains all the codes that are meant 
 to give the final plots to the user, in an automated way. For all the figures shown in the paper there are 
 codes producing them.
 
-7) The seventh directory is called 'precomputed_data'. These data can be downloaded from ######. These
-are the datapoints that have been obtained from the analysis done in the paper, and if the user will run one
-or more than one of the codes in 'automated_code' with these directories not being empty, this will result in
-plotting these datapoints, rather than redoing the whole analysis from scratch. If a directory in 'precomputed_
-data' has the necessary files to be plotted, the user doesn't need to have every file to be analysed in 'raw_data'.
-Conversely, if the user wants to analyse from scratch data, he will have to make sure that the corresponding 
-'raw_data' directory will be filled and the correspondent 'precomputed_data' directory will be empty. 
-
---------------------------------------------------------------------------------------------------------
-
-LEVELS OF AUTOMATION:
-
-The procedure is automatic at three levels:
-
- - Submission: each directory in 'submit_code/' has a code that will generate the raw data and put them
-   in the 'raw_data/' directory. This include the submissions that are taking quite a long time
-   to be submitted manually.
-   
- - Analysis: the directory 'analysis_code/' will contain a code that if ran will generate from the raw data
-   contained in 'raw_data/' the analysed data, and will put them in 'data/'.
-   
- - Plot: the directory 'plots/codes/' contains codes that if ran, they will use the data in 'data' (in case
-   that the correspondent subdirectory of 'precomputed_data' will be empty) and generate the plots exactly 
-   as they are shown in the paper. The results will be shown in 'plots/figures/'.
-   
-   
-The analysis+plot can made in one go. Below are the istructions for making these two passages in one go.
-Also the simple plot from preanalysed data can be done automatically.
-Both of these things can be done using the 'automated_results/' directory, as explained below.
+7) The seventh directory is called 'precomputed_data/'. These data can be downloaded from ######. These
+are the datapoints that have been obtained from the analysis done in the paper, and if the user will run 
+one or more than one of the codes in 'automated_code' with these directories not being empty, this will
+result in plotting these datapoints, rather than redoing the whole analysis from scratch. If a 
+subdirectory in 'precomputed_data/' has the necessary files to be plotted, the user doesn't need to have
+every file to be analysed in the correspondent subdirectory of 'raw_data/'. Conversely, if the user wants
+to analyse from scratch data, he will have to make sure the corresponding 'raw_data' directory to 
+be filled and the correspondent 'precomputed_data/' subdirectory to be empty. 
 
 -------------------------------------------------------------------------------------------------------
 
@@ -110,19 +126,20 @@ To reproduce the figures as in the publication, follow these steps:
 All the outputs will be saved in 'raw_data/'. These codes are expecting to have any possible submit
 script in the same directory. E.g. running 'submit_code/parameter_scan/parameter_scan_submit.sh',
 you may want to put submit scripts in 'submit_code/parameter_scan/.
-The examples of the scripts used were left in each directory.
+The examples of the scripts used were uploaded in each directory.
 
 -------------------------------------------------------------------------------------------------------
 
-ISTRUCTIONS FOR ANALYSIS AND PLOTTING:
+ISTRUCTIONS FOR ANALYSIS AND PLOTTING OR JUST PLOTTING:
 
 The analysis and plotting can be splitted in two steps or done in one go automatically. Otherwise one
-can also plot precomputed data, filling the proper directories with those data.
+can also plot pre-computed data, filling the proper directories with those data.
 
 
 1.a) AUTOMATED WAY, ANALYSIS+PLOT:
 
 There will be a directory called 'automated_results/':
+
 - 'initial_results.sh' will process the data for the preliminary results in figs. 2-6.
    This will need to have either 'raw_data/initial_tests' filled or 'precomputed_data/
    initial_tests' filled to run. In case that the 'precomputed_data/' subdirectory will be
@@ -210,10 +227,10 @@ as the ones shown in the paper.
 
 
 
-
 1.b) PLOTTING PRECOMPUTED DATA:
-If you will fill the suitable subdirectories of 'precomputed_data' and run the automated codes, these 
-codes will take those data, avoiding any further analysis, and plot them. 
+
+If you will fill the suitable subdirectories of 'precomputed_data/' and run the automated codes, these 
+codes will take those data, avoiding any further analysis, and will plot them. 
 
 
 1.c) SPLITTING ANALYSIS AND PLOTTING DATA:
