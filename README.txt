@@ -5,12 +5,6 @@ in the paper 'Symplectic lattice gauge theories on Grid: approaching the conform
 
 ---------------------------------------------------------------------------------------------------------
 
-GRID VERSION USED:
-
-
-
----------------------------------------------------------------------------------------------------------
-
 GENERAL DESCRIPTION:
 
 This code is working in two ways: it either makes the analysis from raw output data given by GRID, and then
@@ -46,7 +40,7 @@ to be submitted manually.
 
 FIRST THINGS TO DO, IF YOU WANT TO MAKE SURE TO AVOID COMPATIBILITY PROBLEMS: 
 
-Download this code and download the data release files in ###########
+Download this code and download the data release files in doi:10.5281/zenodo.8136452
 
 Then, create the conda environment in terminal with conda installed:
 
@@ -90,20 +84,20 @@ want to make the analysis from scratch and plot the data. The workflow for this 
 in the directory of point 6), the raw data will be analysed (using the codes in 'analysis_code/') and the 
 resulting data will be put in 'data/'. These will be plotted (using the codes in 'plots/codes/') and the 
 resulting figures will be saved in 'plots/figures/'. The raw data used in the analysis of (arXiv:2306.11649)
-can be downloaded from ######.
+can be downloaded from doi:10.5281/zenodo.8136452.
 
 6) The sixth directory is called 'automated_results/'. This contains all the codes that are meant 
 to give the final plots to the user, in an automated way. For all the figures shown in the paper there are 
 codes producing them.
 
-7) The seventh directory is called 'precomputed_data/'. These data can be downloaded from ######. These
-are the datapoints that have been obtained from the analysis done in the paper, and if the user will run 
-one or more than one of the codes in 'automated_code' with these directories not being empty, this will
-result in plotting these datapoints, rather than redoing the whole analysis from scratch. If a 
-subdirectory in 'precomputed_data/' has the necessary files to be plotted, the user doesn't need to have
-every file to be analysed in the correspondent subdirectory of 'raw_data/'. Conversely, if the user wants
-to analyse from scratch data, he will have to make sure the corresponding 'raw_data' directory to 
-be filled and the correspondent 'precomputed_data/' subdirectory to be empty. 
+7) The seventh directory is called 'precomputed_data/'. These data can be downloaded from doi:10.5281/
+zenodo.8136452. These are the datapoints that have been obtained from the analysis done in the paper,
+and if the user will run one or more than one of the codes in 'automated_code' with these directories not 
+being empty, this will result in plotting these datapoints, rather than redoing the whole analysis from 
+scratch. If a subdirectory in 'precomputed_data/' has the necessary files to be plotted, the user doesn't
+need to have every file to be analysed in the correspondent subdirectory of 'raw_data/'. Conversely, if
+the user wants to analyse from scratch data, he will have to make sure the corresponding 'raw_data' 
+directory to be filled and the correspondent 'precomputed_data/' subdirectory to be empty. 
 
 -------------------------------------------------------------------------------------------------------
 
